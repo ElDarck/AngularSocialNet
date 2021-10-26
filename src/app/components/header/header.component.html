@@ -1,0 +1,28 @@
+<div class="header">
+  <div class="header-container row">
+    <div class="header-left col-xl-3">
+      <a href="#">
+        <div class="header-logo"><mat-icon class="icon-size">hive</mat-icon></div>
+        <div class="header-title">- Hive -</div>
+      </a>
+    </div>
+    <div class="header-right col-xl-3">
+      <div class="header-user">
+        <div class="header-avatar" (click)="hideAvatarMenu()"><mat-icon class="icon-size">person</mat-icon>
+          <span>User</span>
+          <ul *ngIf="user !== null" [hidden]="avatarMenu">
+            <li>{{user.username}}</li>
+            <li class="header-options"><a href="#">Options</a></li>
+            <li class="header-exit"><a (click)="logout()">Exit</a></li>
+          </ul>
+        </div>
+      </div>
+        <div class="header-language" (click)="hideLangMenu()"><span>Lang</span>
+        <ul [hidden]="langMenu">
+          <li class="header-eng"><a href="#">ENG</a></li>
+          <li class="header-fr"><a href="#">FR</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
