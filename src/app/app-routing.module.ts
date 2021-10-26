@@ -8,11 +8,12 @@ const accountModule = () => import("./account/account.module").then(x => x.Accou
 const usersModule = () => import("./users/users.module").then(x => x.UsersModule);
 
 const routes: Routes = [
-  { path: '', component: MainComponent},
+  { path: 'main', component: MainComponent},
+  { path: '', redirectTo: '../account/login', pathMatch: 'full'},
   { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
   { path: 'account', loadChildren: accountModule },
 
-  { path: '**', redirectTo: '' }
+  // { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

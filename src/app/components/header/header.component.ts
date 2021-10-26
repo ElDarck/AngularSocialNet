@@ -1,4 +1,3 @@
-import { Input } from "@angular/core";
 import { Component } from "@angular/core";
 import { User } from "src/app/models/user";
 import { DataService } from "../../services/data.service";
