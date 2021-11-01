@@ -29,4 +29,5 @@ export class HeaderComponent {
   hideLangMenu() {
     this.langMenu = this.langMenu === true ? false : true;
   }
+
 }

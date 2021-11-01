@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
+import { ActivatedRoute, Router} from "@angular/router";
 
 import { DataService } from "../services/data.service";
 import { first } from "rxjs/operators";
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit{
 
     this.loading = true;
     this.dataService.login(this.f.username.value, this.f.password.value).pipe(first())
-      .subscribe(data => {this.router.navigate([this.returnUrl])
+      .subscribe(data => {this.router.navigate(['/users/'])
         },
         error => {
           this.loading = false;

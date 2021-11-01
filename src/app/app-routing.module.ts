@@ -12,8 +12,6 @@ const routes: Routes = [
   { path: '', redirectTo: '../account/login', pathMatch: 'full'},
   { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
   { path: 'account', loadChildren: accountModule },
-
-  // { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

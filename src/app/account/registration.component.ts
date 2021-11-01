@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { first } from "rxjs/operators";
 
@@ -27,7 +27,7 @@ export class RegistrationComponent implements OnInit{
     this.form = this.formBuilder.group({
       firstname: ["", Validators.required],
       username: ["", Validators.required],
-      password: ["", Validators.required, Validators.minLength(4)]
+      password: ["", [Validators.required, Validators.minLength(5)]]
     })
   }
 
@@ -35,7 +35,7 @@ export class RegistrationComponent implements OnInit{
 
   onSubmit() {
     this.submitted = true;
-
+    console.log(this.form.value)
     if(this.form.invalid) {
       return
     }

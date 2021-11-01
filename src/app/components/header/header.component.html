@@ -12,7 +12,7 @@
           <span>User</span>
           <ul *ngIf="user !== null" [hidden]="avatarMenu">
             <li>{{user.username}}</li>
-            <li class="header-options"><a href="#">Options</a></li>
+            <li class="header-options"><a routerLink="../edit/:id">Options</a></li>
             <li class="header-exit"><a (click)="logout()">Exit</a></li>
           </ul>
         </div>

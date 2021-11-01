@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import {environment} from "../../environments/environment";
-import {User} from "../models/user";
+import { environment } from "../../environments/environment";
+import { User } from "../models/user";
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
@@ -25,7 +25,7 @@ export class DataService {
   }
 
   login(username: any, password: any) {
-    return this.http.post<User>(`${environment.apiUrl}/login`, { username, password })
+    return this.http.post<User>(`${environment.apiUrl}/api/users`, { username, password })
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
@@ -42,21 +42,21 @@ export class DataService {
   }
 
   register(user: User) {
-    return this.http.post(`${environment.apiUrl}/users/register`, user);
+    return this.http.post(`${environment.apiUrl}/api/users`, user);
+
   }
 
   getAll() {
-    return this.http.get<User[]>(`${environment.apiUrl}/users`);
+    return this.http.get<User[]>(`${environment.apiUrl}/api/users`);
   }
 
   getById(id: string) {
-    return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
+    return this.http.get<User>(`${environment.apiUrl}/api/users/${id}`);
   }
 
   update(id: string, params: any) {
-    return this.http.put(`${environment.apiUrl}/users/${id}`, params)
+    return this.http.put(`${environment.apiUrl}/api/users/${id}`, params)
       .pipe(map(x => {
-        // update stored user if the logged in user updated their own record
         if (id == this.userValue.id) {
           // update local storage
           const user = { ...this.userValue, ...params };
