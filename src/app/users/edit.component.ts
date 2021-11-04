@@ -13,7 +13,7 @@ import { DataService } from "../services/data.service";
 export class EditComponent implements OnInit{
 
   user!: User;
-  formEditUser!: FormGroup;
+  form!: FormGroup;
   id!: string;
   loading:boolean = false;
   submitted: boolean = false;
@@ -29,11 +29,12 @@ export class EditComponent implements OnInit{
 
   ngOnInit() {
     this.user = this.dataService.userValue
-
     console.log(this.user);
     this.id = this.user.id;
 
-    this.formEditUser = this.formBuilder.group({
+    this.isAddMode =!this.id;
+
+    this.form = this.formBuilder.group({
       username: ['', [Validators.required, Validators.min(3)]],
       firstName: ['', [Validators.required, Validators.min(3)]],
       lastName: ['', [Validators.required, Validators.min(3)]],
@@ -45,41 +46,60 @@ export class EditComponent implements OnInit{
       studyThird: ['', [Validators.min(5)]],
     })
 
-    this.dataService.getById(this.id)
-      .pipe(first())
-      .subscribe(x => {
-        this.f.username.setValue(x.username);
-        this.f.firstName.setValue(x.firstName);
-        this.f.lastName.setValue(x.lastName);
-        this.f.birthDate.setValue(x.birthDate);
-        this.f.address.setValue(x.address);
-        this.f.phoneNumber.setValue(x.phoneNumber);
-        this.f.studyFirst.setValue(x.studyFirst);
-        this.f.studySecond.setValue(x.studySecond);
-        this.f.studyThird.setValue(x.studyThird);
-      });
+    if (!this.isAddMode) {
+      this.dataService.getById(this.id)
+        .pipe(first())
+        .subscribe(x => {
+          this.f.username.setValue(x.username);
+          this.f.firstName.setValue(x.firstName);
+          this.f.lastName.setValue(x.lastName);
+          this.f.birthDate.setValue(x.birthDate);
+          this.f.address.setValue(x.address);
+          this.f.phoneNumber.setValue(x.phoneNumber);
+          this.f.studyFirst.setValue(x.studyFirst);
+          this.f.studySecond.setValue(x.studySecond);
+          this.f.studyThird.setValue(x.studyThird);
+        });
+    }
   }
 
-  get f() { return this.formEditUser.controls; }
+  get f() { return this.form.controls; }
 
   onSubmit() {
     this.submitted = true;
 
-    if (this.formEditUser.invalid) {
+    if (this.form.invalid) {
       return console.log("There is an error...");
     }
     console.log(this.user.id);
     this.loading = true;
 
-    this.updateUser();
-    console.log("update");
+    if (this.isAddMode) {
+      this.createUser();
+      console.log("create");
+    } else {
+      this.updateUser();
+      console.log("update")
+    }
+  }
 
+  private createUser() {
+    this.dataService.register(this.form.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate(['/users/'], { relativeTo: this.route });
+        },
+        error => {
+          this.loading = false;
+        });
   }
 
   private updateUser() {
-    this.dataService.update(this.id, this.formEditUser.value).pipe(first())
+    this.dataService.update(this.id, this.form.value)
+      .pipe(first())
       .subscribe(
-        data => {this.router.navigate(['..', { relativeTo: this.route }]);},
+        data => {this.router.navigate(['/users/'], { relativeTo: this.route });},
         error => {this.loading = false}
       )
   }

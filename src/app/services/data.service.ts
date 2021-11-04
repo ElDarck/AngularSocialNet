@@ -25,7 +25,7 @@ export class DataService {
   }
 
   login(username: any, password: any) {
-    return this.http.post<User>(`${environment.apiUrl}/api/users`, { username, password })
+    return this.http.post<User>(`${environment.apiUrl}/users`, { username, password })
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
@@ -38,24 +38,24 @@ export class DataService {
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');
     this.userSubject.next(null!);
-    this.router.navigate(['/account/login']);
+    this.router.navigate(['/login']);
   }
 
   register(user: User) {
-    return this.http.post(`${environment.apiUrl}/api/users`, user);
+    return this.http.post(`${environment.apiUrl}/users`, user);
 
   }
 
   getAll() {
-    return this.http.get<User[]>(`${environment.apiUrl}/api/users`);
+    return this.http.get<User[]>(`${environment.apiUrl}/users`);
   }
 
   getById(id: string) {
-    return this.http.get<User>(`${environment.apiUrl}/api/users/${id}`);
+    return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
   }
 
   update(id: string, params: any) {
-    return this.http.put(`${environment.apiUrl}/api/users/${id}`, params)
+    return this.http.put(`${environment.apiUrl}/users/${id}`, params)
       .pipe(map(x => {
         if (id == this.userValue.id) {
           // update local storage

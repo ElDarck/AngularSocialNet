@@ -1,6 +1,7 @@
-import { Component } from "@angular/core";
-import { User } from "src/app/models/user";
-import { DataService } from "../../services/data.service";
+import {Component} from "@angular/core";
+import {User} from "src/app/models/user";
+import {DataService} from "../../services/data.service";
+import {Role} from "../../models/role";
 
 @Component({
   selector: "header-component",
@@ -12,6 +13,7 @@ export class HeaderComponent {
   user!: User;
   avatarMenu: boolean = true;
   langMenu: boolean = true;
+  isAdmin: Role = Role.Admin
 
   constructor(
     private dataService : DataService

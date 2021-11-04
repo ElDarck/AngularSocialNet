@@ -3,16 +3,17 @@
     <div class="d-flex flex-column m-2">
       <div class="d-block p-2">
         <span class="mr-2">{{user.username}}</span>
-        <span class="mr-2" *ngIf="user.admin === true">ADMINISTRATOR</span>
       </div>
       <div class="d-block p-2">
-        <span class="mr-2" *ngIf="user.firstName !== null">{{user.firstName}}</span>
-        <span class="mr-2" *ngIf="user.lastName !== null">{{user.lastName}}</span>
+        <span class="mr-2" *ngIf="user.firstName !== undefined">{{user.firstName}}</span>
+        <span class="mr-2" *ngIf="user.lastName !== undefined">{{user.lastName}}</span>
       </div>
   </div>
   </div>
-  <div class="row">
-    <form [formGroup]="formEditUser" (ngSubmit)="onSubmit()">
+  <div class="row flex-column">
+    <h1 *ngIf="isAddMode" class="d-block mb-2 ml-1">Add User:</h1>
+    <h1 *ngIf="!isAddMode" class="d-block mb-2 ml-1">Edit User:</h1>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-group col">
         <label for="username">Username *</label>
         <input id="username" type="text" formControlName="username" class="form-control"

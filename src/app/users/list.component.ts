@@ -16,7 +16,7 @@ export class ListComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.user = this.dataService.userValue
+    this.user = this.dataService.userValue;
   }
 
 }

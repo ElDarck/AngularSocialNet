@@ -1,70 +1,8 @@
 {
   "logged": [
-    {
-      "id": "1",
-      "admin": "true",
-      "username": "Admin",
-      "password": "12345"
-    },
-    {
-      "username": "ASFa",
-      "password": "123145",
-      "id": "VsMmPFM",
-      "admin": "true"
-    },
-    {
-      "username": "Аурбеш",
-      "firstName": "первый",
-      "middleName": "второй",
-      "lastName": "третий",
-      "birthDate": "2021-11-12",
-      "address": "тот самый",
-      "phoneNumber": "not have",
-      "studyFirst": "School",
-      "studySecond": "University",
-      "id": "rE8f-NI"
-    },
-    {
-      "username": " EFsv",
-      "firstName": "sdv",
-      "lastName": "dvsdv",
-      "birthDate": "2021-11-05",
-      "address": "sdvsdv",
-      "phoneNumber": "wefwef",
-      "studyFirst": "sdvsdv",
-      "studySecond": "sdvsdv",
-      "id": "CYeSX9F"
-    }
+
   ],
   "users": [
-    {
-      "firstname": "John",
-      "username": "12eqsdas",
-      "password": "12345",
-      "id": 1
-    },
-    {
-      "username": " 12eqsdas",
-      "firstName": "csaasc",
-      "lastName": "ascasc",
-      "birthDate": "2021-11-27",
-      "address": "cascasc",
-      "phoneNumber": "ascasc",
-      "studyFirst": "ascasc",
-      "studySecond": "ascasc",
-      "id": 2
-    },
-    {
-      "username": " 12eqsdas",
-      "firstName": "cascasc",
-      "lastName": "ascasca",
-      "birthDate": "2021-11-12",
-      "address": "",
-      "phoneNumber": "ascascasc",
-      "studyFirst": "",
-      "studySecond": "",
-      "studyThird": "",
-      "id": 3
-    }
+
   ]
 }

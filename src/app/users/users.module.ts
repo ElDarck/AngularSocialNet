@@ -6,17 +6,20 @@ import { UsersRoutingModule } from "./users.routing.module";
 import { LayoutComponent } from "./layout.component";
 import { ListComponent } from "./list.component";
 import { EditComponent } from "./edit.component";
+import { AdminComponent } from "../admin/admin.component";
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+
   ],
   declarations: [
     LayoutComponent,
     ListComponent,
     EditComponent,
+    AdminComponent
   ]
 })
 export class UsersModule { }

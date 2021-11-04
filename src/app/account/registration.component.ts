@@ -25,8 +25,8 @@ export class RegistrationComponent implements OnInit{
 
   ngOnInit () {
     this.form = this.formBuilder.group({
-      firstname: ["", Validators.required],
-      username: ["", Validators.required],
+      firstname: ["", [Validators.required]],
+      username: ["", [Validators.required]],
       password: ["", [Validators.required, Validators.minLength(5)]]
     })
   }
@@ -37,14 +37,14 @@ export class RegistrationComponent implements OnInit{
     this.submitted = true;
     console.log(this.form.value)
     if(this.form.invalid) {
-      return
+      return console.log("There is an error...");
     }
 
     this.loading = true;
-    this.dataService.register(this.form.value).pipe(first())
+    this.dataService.register(this.form.value)
+      .pipe(first())
       .subscribe(
-        data => {this.router.navigate(['../login']), {relativeTo: this.route}
-        },
+        data => {this.router.navigate(['../login'], {relativeTo: this.route})},
         error => {
           this.loading = false
         }

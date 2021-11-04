@@ -9,7 +9,7 @@ const usersModule = () => import("./users/users.module").then(x => x.UsersModule
 
 const routes: Routes = [
   { path: 'main', component: MainComponent},
-  { path: '', redirectTo: '../account/login', pathMatch: 'full'},
+  { path: '', redirectTo: '/account/login', pathMatch: 'full'},
   { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
   { path: 'account', loadChildren: accountModule },
 ];
