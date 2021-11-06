@@ -1,8 +1,83 @@
 {
-  "logged": [
-
-  ],
+  "login": [],
   "users": [
-
-  ]
+    {
+      "email": "aas@as.as",
+      "password": "",
+      "username": "Main Admin",
+      "role": "Admin",
+      "id": 2,
+      "firstName": "Elder",
+      "lastName": "Executor",
+      "birthDate": "1860-01-01",
+      "address": "website.com",
+      "phoneNumber": "1234567890",
+      "studyFirst": "",
+      "studySecond": "",
+      "studyThird": "",
+      "school": "asfsf",
+      "universityFirst": "asfasfasf",
+      "facultyFirst": "asfasfasfvdvdwv wdv wv wv w wv wd wdvw vev tnuj eb er rtn",
+      "courseFirst": "asfasfasf",
+      "studyFirstDateFrom": "2021-11-02",
+      "studyFirstDateTo": "2021-11-25",
+      "universitySecond": "asfasf",
+      "facultySecond": "ascbgn d vwv w",
+      "courseSecond": "wdv w erb e eb ",
+      "studySecondDateFrom": "2021-11-03",
+      "studySecondDateTo": "2021-11-25",
+      "universityThird": "qwefcsdc  sdv s",
+      "facultyThird": "sd vsdv sdvwewdvwdv wvd wwdvw",
+      "courseThird": "sdv sdv wsdvw w",
+      "studyThirdDateFrom": "2021-11-03",
+      "studyThirdDateTo": "2021-11-12"
+    },
+    {
+      "email": "user@user.com",
+      "password": "$2a$10$yhsJIkgWZbyCDUuI1nufMOJSGhl5K9GsNH.18hS.63MU6VyPjmxhO",
+      "role": "User",
+      "id": 3,
+      "username": "user3",
+      "firstName": "user3",
+      "lastName": "third",
+      "phoneNumber": "1234567890",
+      "universityFirst": "university",
+      "facultyFirst": "Dsdfsf",
+      "courseFirst": "sdfsdfsdf",
+      "school": "wefwefwefw",
+      "studyFirstDateFrom": "2021-11-24",
+      "studyFirstDateTo": "2021-11-25"
+    },
+    {
+      "email": "admin2@admin.com",
+      "password": "$2a$10$CzbMi9eVMy2HnxgTxgLXFu6It06uzimIBzHOdieyFG9Bs48hJWjHa",
+      "role": "Admin",
+      "id": 10,
+      "username": "user10",
+      "firstName": "user10",
+      "lastName": "user",
+      "phoneNumber": "1234567890"
+    },
+    {
+      "email": "admin3@admin.com",
+      "password": "$2a$10$DEhVerxVyK96moD3BxiAo.10xbHOXJMhgdGrPfi55djKPas2eRTTy",
+      "role": "Admin",
+      "id": 11,
+      "username": "user11",
+      "firstName": "user11",
+      "lastName": "eleven",
+      "phoneNumber": "1234567890"
+    },
+    {
+      "email": "user13@user.com",
+      "password": "$2a$10$ZP2AFTZr3FI2TaHi5VJSzuhS4XSCwJSjBEs8ElDzWRKqhiFgb.ZVa",
+      "username": "user13",
+      "role": "User",
+      "firstName": "user13",
+      "lastName": "THiradfsqa",
+      "phoneNumber": "1234567890",
+      "id": 12
+    }
+  ],
+  "accounts": []
 }

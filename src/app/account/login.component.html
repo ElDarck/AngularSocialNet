@@ -1,13 +1,13 @@
 <div class="content-authorization bg-info p-2 border border-primary rounded p-2">
   <div class="row">
-    <div class="p-2 m-auto"> Login
+    <div class="p-2 m-auto mb-2">Login:
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="username">Username</label>
-          <input id="username" type="text" formControlName="username" class="form-control"
-               [ngClass]="{'is-invalid': submitted && f.username.errors}">
-          <div class="invalid-feedback" *ngIf="submitted && f.username.errors">
-            <div *ngIf="f.username.errors.required">Username is required</div>
+          <label for="email">Email</label>
+          <input id="email" type="email" formControlName="email" class="form-control"
+               [ngClass]="{'is-invalid': submitted && f.email.errors}">
+          <div class="invalid-feedback" *ngIf="submitted && f.email.errors">
+            <div *ngIf="f.email.errors.required">Email is required</div>
           </div>
         </div>
         <div class="form-group">

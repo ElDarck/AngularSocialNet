@@ -5,16 +5,18 @@ import { AuthGuard } from "../helpers/auth.guard";
 import { Role } from "../models/role";
 import { EditComponent } from './edit.component';
 import { LayoutComponent } from './layout.component';
-import { ListComponent } from './list.component';
-import { AdminComponent } from "../admin/admin.component";
+import { UserComponent } from './user.component';
+import { AdminComponent } from "./admin.component";
+import {UserlistComponent} from "./userlist.component";
 
 const routes: Routes = [
   {
     path: '', component: LayoutComponent,
     children: [
-      { path: '', component: ListComponent },
+      { path: '', component: UserComponent },
       { path: 'edit/:id', component: EditComponent },
-      { path: 'add', component: EditComponent },
+      { path: 'userlist', component: UserlistComponent },
+      { path: 'user', component: UserComponent },
       { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin] }}
     ]
   }

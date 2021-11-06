@@ -1,0 +1,188 @@
+<h2 mat-dialog-title>Edit user data:</h2>
+
+<mat-dialog-content>
+  <div *ngIf="isAdd === false">
+    <h3>User general info</h3>
+    <p>User ID:{{this.userId}}</p>
+  </div>
+  <div *ngIf="isAdd === true">
+    <h3>Create new User:</h3>
+  </div>
+
+  <form [formGroup]="formUser" (ngSubmit)="onSubmit(formUser.value, null)">
+    <div class="form-group col">
+      <label for="username">Username *</label>
+      <input id="username" type="text" formControlName="username" class="form-control"
+             [ngClass]="{'is-invalid': submitted && f.username.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && f.username.errors">
+        <div *ngIf="f.username.errors.required">Username is required</div>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label for="email">email*</label>
+      <input id="email" type="email" formControlName="email" class="form-control"
+             [ngClass]="{'is-invalid': submitted && f.email.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && f.email.errors">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+      </div>
+    </div>
+    <div *ngIf="isAdd" class="form-group col">
+      <div class="form-group">
+        <p>Role:</p>
+        <div class="d-flex flex-row">
+          <label class="d-inline-block" for="roleAdmin">Admin:</label>
+          <input id="roleAdmin" type="radio" formControlName="role" value="Admin" class="form-control d-inline-block"
+                 [ngClass]="{'is-invalid': submitted && f.role.errors}">
+        </div>
+        <div class="d-flex flex-row">
+          <label class="d-inline-block" for="roleUser">User:</label>
+          <input id="roleUser" type="radio" formControlName="role" value="User" class="form-control d-inline-block"
+                 [ngClass]="{'is-invalid': submitted && f.role.errors}">
+        </div>
+        <div class="invalid-feedback" *ngIf="submitted && f.role.errors">
+          <div *ngIf="f.role.errors.required">Role is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label for="password">Password *</label>
+      <input id="password" type="password" formControlName="password" class="form-control"
+             [ngClass]="{'is-invalid': submitted && f.password.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && f.password.errors">
+        <div *ngIf="f.password.errors.required">Password is required</div>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label for="firstName">First name *</label>
+      <input id="firstName" type="text" formControlName="firstName" class="form-control"
+             [ngClass]="{'is-invalid': submitted && f.firstName.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && f.firstName.errors">
+        <div *ngIf="f.firstName.errors.required">First name is required</div>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label for="lastName">Last name *</label>
+      <input id="lastName" type="text" formControlName="lastName" class="form-control"
+             [ngClass]="{'is-invalid': submitted && f.lastName.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && f.lastName.errors">
+        <div *ngIf="f.lastName.errors.required">Last name is required</div>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label for="phoneNumber">Phone *</label>
+      <input id="phoneNumber" type="text" formControlName="phoneNumber"
+             class="form-control" [ngClass]="{'is-invalid': submitted && f.phoneNumber.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && f.phoneNumber.errors">
+        <div *ngIf="f.phoneNumber.errors.required">Phone is required</div>
+      </div>
+    </div>
+    <div class="form-group col">
+    </div>
+    <button *ngIf="!isAdd" [disabled]="loading" class="btn btn-primary mr-2" type="submit">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm m-1"></span>
+      Save
+    </button>
+    <button *ngIf="isAdd" [disabled]="loading" class="btn btn-primary mr-2" type="submit">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm m-1"></span>
+      Add
+    </button>
+  </form>
+  <h3 *ngIf="isAdd === false">About User</h3>
+  <form *ngIf="isAdd === false" [formGroup]="formEducation" (ngSubmit)="onSubmit(null, formEducation.value)">
+    <div class="form-group col pt-2 pb-2">
+      <label for="birthDate">Birthday</label>
+      <input id="birthDate" type="date" formControlName="birthDate" class="form-control"
+             [ngClass]="{'is-invalid': submitted && e.birthDate.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.birthDate.errors">
+      </div>
+    </div>
+    <div class="form-group col pt-2 pb-2">
+      <label for="address">Address</label>
+      <input id="address" type="text" class="form-control" formControlName="address"
+             [ngClass]="{'is-invalid': submitted && e.address.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.address.errors">
+      </div>
+    </div>
+    <div class="form-group col pt-2 pb-2">
+      <label for="school">School</label>
+      <input id="school" type="text" formControlName="school" class="form-control"
+             [ngClass]="{'is-invalid': submitted && e.school.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.school.errors">
+      </div>
+    </div>
+    <div class="form-group col pt-2 pb-2">
+      <label for="universityFirst">First university</label>
+      <input id="universityFirst" type="text" formControlName="universityFirst" class="form-control"
+             [ngClass]="{'is-invalid': submitted && e.universityFirst.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.universityFirst.errors"></div>
+      <label for="universityFirst">Faculty</label>
+      <input id="facultyFirst" type="text" formControlName="facultyFirst" class="form-control"
+               [ngClass]="{'is-invalid': submitted && e.facultyFirst.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.facultyFirst.errors"></div>
+      <label for="courseFirst">Course</label>
+      <input id="courseFirst" type="text" formControlName="courseFirst" class="form-control"
+             [ngClass]="{'is-invalid': submitted && e.courseFirst.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.courseFirst.errors"></div>
+      <label for="studyFirstDateFrom">Study from</label>
+      <input id="studyFirstDateFrom" type="date" formControlName="studyFirstDateFrom" class="form-control"
+             [ngClass]="{'is-invalid': submitted && e.studyFirstDateFrom.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.studyFirstDateFrom.errors"></div>
+      <label for="studyFirstDateTo">Study to</label>
+      <input id="studyFirstDateTo" type="date" formControlName="studyFirstDateTo" class="form-control"
+             [ngClass]="{'is-invalid': submitted && e.studyFirstDateTo.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.studyFirstDateTo.errors"></div>
+    </div>
+    <div class="form-group col pt-2 pb-2">
+      <label for="universitySecond">Second university</label>
+      <input id="universitySecond" type="text" formControlName="universitySecond" class="form-control"
+             [ngClass]="{'is-invalid': submitted && e.universitySecond.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.universitySecond.errors"></div>
+      <label for="facultySecond">Faculty</label>
+      <input id="facultySecond" type="text" formControlName="facultySecond" class="form-control"
+             [ngClass]="{'is-invalid': submitted && e.facultySecond.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.facultySecond.errors"></div>
+      <label for="courseSecond">Course</label>
+      <input id="courseSecond" type="text" formControlName="courseSecond" class="form-control"
+             [ngClass]="{'is-invalid': submitted && e.courseSecond.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.courseSecond.errors"></div>
+      <label for="studySecondDateFrom">Study from</label>
+      <input id="studySecondDateFrom" type="date" formControlName="studySecondDateFrom" class="form-control"
+             [ngClass]="{'is-invalid': submitted && e.studySecondDateFrom.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.studySecondDateFrom.errors"></div>
+      <label for="studySecondDateTo">Study to</label>
+      <input id="studySecondDateTo" type="date" formControlName="studySecondDateTo" class="form-control"
+             [ngClass]="{'is-invalid': submitted && e.studySecondDateTo.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.studySecondDateTo.errors"></div>
+    </div>
+    <div class="form-group col pt-2 pb-2">
+      <label for="universityThird">Third university</label>
+      <input id="universityThird" type="text" formControlName="universityThird" class="form-control"
+             [ngClass]="{'is-invalid': submitted && e.universityThird.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.universityThird.errors"></div>
+      <label for="facultyThird">Faculty</label>
+      <input id="facultyThird" type="text" formControlName="facultyThird" class="form-control"
+             [ngClass]="{'is-invalid': submitted && e.facultyThird.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.facultyThird.errors"></div>
+      <label for="courseThird">Course</label>
+      <input id="courseThird" type="text" formControlName="courseThird" class="form-control"
+             [ngClass]="{'is-invalid': submitted && e.courseThird.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.courseThird.errors"></div>
+      <label for="studyThirdDateFrom">Study from</label>
+      <input id="studyThirdDateFrom" type="date" formControlName="studyThirdDateFrom" class="form-control"
+             [ngClass]="{'is-invalid': submitted && e.studyThirdDateFrom.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.studyThirdDateFrom.errors"></div>
+      <label for="studyThirdDateTo">Study to</label>
+      <input id="studyThirdDateTo" type="date" formControlName="studyThirdDateTo" class="form-control"
+             [ngClass]="{'is-invalid': submitted && e.studyFirstDateTo.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && e.studyFirstDateTo.errors"></div>
+    </div>
+    <button *ngIf="!isAdd" [disabled]="loading" class="btn btn-primary mr-2" type="submit">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm m-1"></span>
+      Save
+    </button>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button ml-2" (click)="close()">Close</button>
+</mat-dialog-actions>

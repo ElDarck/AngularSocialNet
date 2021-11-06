@@ -13,7 +13,7 @@ export class HeaderComponent {
   user!: User;
   avatarMenu: boolean = true;
   langMenu: boolean = true;
-  isAdmin: Role = Role.Admin
+  isAdmin: Role = Role.Admin;
 
   constructor(
     private dataService : DataService

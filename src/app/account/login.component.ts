@@ -12,19 +12,24 @@ export class LoginComponent implements OnInit{
   form!: FormGroup;
   returnUrl!: this;
   submitted: boolean = false;
-  loading: boolean = false
+  loading: boolean = false;
+  error = "";
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private route : ActivatedRoute,
     private dataService: DataService,
-  ) {}
+  ) {
+    if (this.dataService.userValue) {
+      this.router.navigate(['/user']);
+    }
+  }
 
   ngOnInit () {
     this.form = this.formBuilder.group({
-      username: [' ', Validators.required],
-      password: [' ', Validators.required]
+      email: [' ', [Validators.required]],
+      password: [' ', [Validators.required, Validators.minLength(5)]]
     });
 
     this.returnUrl = this.route.snapshot.params['returnUrl'] || '/';
@@ -34,14 +39,18 @@ export class LoginComponent implements OnInit{
     this.submitted = true;
 
     if(this.form.invalid) {
-      return
+      return console.log("There is an error...")
     }
 
     this.loading = true;
-    this.dataService.login(this.f.username.value, this.f.password.value).pipe(first())
-      .subscribe(data => {this.router.navigate(['/users/'])
+    console.log(this.f.email.value, this.f.password.value);
+    this.dataService.login(this.f.email.value, this.f.password.value)
+      .pipe(first())
+      .subscribe(data => {this.router.navigate(['/user/'])
+          console.log(data)
         },
         error => {
+          this.error = error
           this.loading = false;
         })
   }

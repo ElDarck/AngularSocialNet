@@ -15,6 +15,7 @@ export class EditComponent implements OnInit{
   user!: User;
   form!: FormGroup;
   id!: string;
+  userId!: string;
   loading:boolean = false;
   submitted: boolean = false;
   isAddMode!: boolean;
@@ -28,37 +29,36 @@ export class EditComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.user = this.dataService.userValue
-    console.log(this.user);
-    this.id = this.user.id;
+    this.user = this.dataService.userValue;
 
-    this.isAddMode =!this.id;
+    this.id = this.user.id;
+    this.userId = this.user.user.id;
+
+    this.isAddMode = !this.id;
 
     this.form = this.formBuilder.group({
       username: ['', [Validators.required, Validators.min(3)]],
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.min(5)]],
       firstName: ['', [Validators.required, Validators.min(3)]],
       lastName: ['', [Validators.required, Validators.min(3)]],
       birthDate: ['', [ Validators.min(1)]],
       address: ['', [Validators.min(5)]],
       phoneNumber: ['', [Validators.required, Validators.min(10)]],
-      studyFirst: ['', [Validators.min(5)]],
-      studySecond: ['', [Validators.min(5)]],
-      studyThird: ['', [Validators.min(5)]],
     })
 
     if (!this.isAddMode) {
-      this.dataService.getById(this.id)
+      this.dataService.getById(this.userId)
         .pipe(first())
         .subscribe(x => {
           this.f.username.setValue(x.username);
+          this.f.email.setValue(x.email);
+          this.f.role.setValue(x.role);
           this.f.firstName.setValue(x.firstName);
           this.f.lastName.setValue(x.lastName);
           this.f.birthDate.setValue(x.birthDate);
           this.f.address.setValue(x.address);
           this.f.phoneNumber.setValue(x.phoneNumber);
-          this.f.studyFirst.setValue(x.studyFirst);
-          this.f.studySecond.setValue(x.studySecond);
-          this.f.studyThird.setValue(x.studyThird);
         });
     }
   }
@@ -71,16 +71,10 @@ export class EditComponent implements OnInit{
     if (this.form.invalid) {
       return console.log("There is an error...");
     }
-    console.log(this.user.id);
+
     this.loading = true;
 
-    if (this.isAddMode) {
-      this.createUser();
-      console.log("create");
-    } else {
-      this.updateUser();
-      console.log("update")
-    }
+    this.updateUser();
   }
 
   private createUser() {
@@ -96,11 +90,15 @@ export class EditComponent implements OnInit{
   }
 
   private updateUser() {
-    this.dataService.update(this.id, this.form.value)
+    this.dataService.update(this.userId, this.form.value, this.user.accessToken)
       .pipe(first())
       .subscribe(
-        data => {this.router.navigate(['/users/'], { relativeTo: this.route });},
+        data => {
+          this.router.navigate(['/user/'], { relativeTo: this.route });
+          alert("Update is complete")
+        },
         error => {this.loading = false}
       )
   }
 }
+

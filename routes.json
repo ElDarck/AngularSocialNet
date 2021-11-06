@@ -1,5 +1,4 @@
 {
-  "/loger*" :
-  "/users*": "/600/users$1",
+  "/users*": "/664/users$1",
   "/accounts*": "/400/accounts$1"
 }

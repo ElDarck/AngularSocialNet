@@ -1,0 +1,31 @@
+<div class="d-block mt-2 card">
+  <h3 class="d-inline-block m-3">Admin Panel</h3>
+  <div class="card-body">
+    <p>This page can be access ONLY by Administrator</p>
+    <p class="mb-1">All users from secure (admin only) api end point:</p>
+    <button class="btn btn-info mt-2 mb-2" (click)="openDialog(id = null, isAdd = true)">Add new User</button>
+    <div *ngIf="loading" class="spinner-border-sm spinner-border"></div>
+    <div *ngIf="users" class="container mb-3 text-dark bg-light">
+      <ul>
+        <li *ngFor="let user of users" class="d-block border-success border-bottom mt-3 mb-2">
+          <div class="d-flex flex-row mb-2 mt-2">
+            <div class="d-inline-block mr-3">
+              <span class="d-block mb-1">User role: {{user.role}}</span>
+              <span class="d-block mb-1">User name: {{user.firstName}} {{user.lastName}}</span>
+              <span class="d-block mb-1">Email: {{user.email}}</span>
+            </div>
+            <div class="d-inline-block">
+              <span class="d-block mb-1">Phone: {{user.phoneNumber}}</span>
+              <span class="d-block mb-1">Birthday: {{user.birthDate}}</span>
+              <span class="d-block mb-1">Address: {{user.address}}</span>
+            </div>
+          </div>
+          <div class="d-block mb-2">
+            <button (click)="openDialog(user.id, isAdd=false)" type="button" class="btn btn-warning mr-1">Edit User</button>
+            <button class="btn btn-danger ml-1" (click)="deleteUser(user.id)">Delete User</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

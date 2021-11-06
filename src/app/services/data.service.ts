@@ -24,14 +24,18 @@ export class DataService {
     return this.userSubject.value;
   }
 
-  login(username: any, password: any) {
-    return this.http.post<User>(`${environment.apiUrl}/users`, { username, password })
+  login( email: any, password: any,) {
+    return this.http.post<User>(`${environment.apiUrl}/login`, { email, password })
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('user', JSON.stringify(user));
-        this.userSubject.next(user);
+        if (user.user && user.accessToken) {
+          localStorage.setItem('user', JSON.stringify(user));
+          this.userSubject.next(user);
+          console.log(JSON.stringify(user));
+        }
+
         return user;
-      }));
+      }))
   }
 
   logout() {
@@ -42,8 +46,7 @@ export class DataService {
   }
 
   register(user: User) {
-    return this.http.post(`${environment.apiUrl}/users`, user);
-
+    return this.http.post(`${environment.apiUrl}/users/`, user);
   }
 
   getAll() {
@@ -54,10 +57,13 @@ export class DataService {
     return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
   }
 
-  update(id: string, params: any) {
-    return this.http.put(`${environment.apiUrl}/users/${id}`, params)
+  update(id: string, params: any, accessToken: any) {
+    return this.http.patch(`${environment.apiUrl}/users/${id}`, params, { headers:
+        { Authorization: "Bearer " + accessToken } })
       .pipe(map(x => {
-        if (id == this.userValue.id) {
+        if (id == this.userValue.user.id) {
+          console.log(id);
+          console.log(this.userValue.user.id);
           // update local storage
           const user = { ...this.userValue, ...params };
           localStorage.setItem('user', JSON.stringify(user));
@@ -67,5 +73,10 @@ export class DataService {
         }
         return x;
       }));
+  }
+
+  delete( id: string, accessToken: any) {
+    return this.http.delete(`${environment.apiUrl}/users/${id}`, { headers:
+    { Authorization: "Bearer " + accessToken } });
   }
 }

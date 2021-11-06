@@ -1,17 +1,29 @@
 <div class="header">
   <div class="header-container row">
-    <div class="header-left col-xl-3">
-      <a href="#">
-        <div class="header-logo"><mat-icon class="icon-size">hive</mat-icon></div>
-        <div class="header-title">- Hive -</div>
-      </a>
+    <div class="header-left col-xl-1">
+      <div>
+        <a href="#">
+          <div class="header-logo"><mat-icon class="icon-size">hive</mat-icon></div>
+        </a>
+      </div>
     </div>
-    <div class="header-right col-xl-3">
+    <div class="d-inline-block col-xl-3">
+      <ul *ngIf="user !== null" class="d-inline-block">
+        <li class="d-inline m-1"><a routerLink="/userlist">All Users</a></li>
+        <li class="d-inline m-1"><a *ngIf="user.user.role == isAdmin" routerLink="/admin">Admin panel</a></li>
+        <li class="d-inline m-1"><a routerLink="../user">User info</a></li>
+        <li class="d-inline m-1"><a routerLink="../edit/:id">User options</a></li>
+        <li class="d-inline m-1"><a (click)="logout()">Exit</a></li>
+      </ul>
+    </div>
+    <div class="header-right col-xl-1">
       <div class="header-user">
-        <div class="header-avatar" (click)="hideAvatarMenu()"><mat-icon class="icon-size">person</mat-icon>
-          <span>User</span>
-          <ul *ngIf="user !== null" [hidden]="avatarMenu">
-            <li><a routerLink="../users">{{user.username}}</a></li>
+        <div class="header-avatar" *ngIf="user !== null" [hidden]="avatarMenu" (click)="hideAvatarMenu()">
+          <mat-icon class="icon-size">person</mat-icon>
+          <span>{{user.user.username}}</span>
+          <ul>
+            <li><a routerLink="../users">{{user.user.username}}</a></li>
+            <li><a *ngIf="user.user.role == isAdmin" routerLink="/admin">Admin</a></li>
             <li class="header-options"><a routerLink="../edit/:id">Options</a></li>
             <li class="header-exit"><a (click)="logout()">Exit</a></li>
           </ul>
@@ -19,7 +31,6 @@
       </div>
         <div class="header-language" (click)="hideLangMenu()"><span>Lang</span>
         <ul [hidden]="langMenu">
-          <li><a *ngIf="isAdmin" routerLink="/admin">Admin</a></li>
           <li class="header-eng"><a href="#">ENG</a></li>
           <li class="header-fr"><a href="#">FR</a></li>
         </ul>
