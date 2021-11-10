@@ -2,37 +2,6 @@
   "login": [],
   "users": [
     {
-      "email": "aas@as.as",
-      "password": "",
-      "username": "Main Admin",
-      "role": "Admin",
-      "id": 2,
-      "firstName": "Elder",
-      "lastName": "Executor",
-      "birthDate": "1860-01-01",
-      "address": "website.com",
-      "phoneNumber": "1234567890",
-      "studyFirst": "",
-      "studySecond": "",
-      "studyThird": "",
-      "school": "asfsf",
-      "universityFirst": "asfasfasf",
-      "facultyFirst": "asfasfasfvdvdwv wdv wv wv w wv wd wdvw vev tnuj eb er rtn",
-      "courseFirst": "asfasfasf",
-      "studyFirstDateFrom": "2021-11-02",
-      "studyFirstDateTo": "2021-11-25",
-      "universitySecond": "asfasf",
-      "facultySecond": "ascbgn d vwv w",
-      "courseSecond": "wdv w erb e eb ",
-      "studySecondDateFrom": "2021-11-03",
-      "studySecondDateTo": "2021-11-25",
-      "universityThird": "qwefcsdc  sdv s",
-      "facultyThird": "sd vsdv sdvwewdvwdv wvd wwdvw",
-      "courseThird": "sdv sdv wsdvw w",
-      "studyThirdDateFrom": "2021-11-03",
-      "studyThirdDateTo": "2021-11-12"
-    },
-    {
       "email": "user@user.com",
       "password": "$2a$10$yhsJIkgWZbyCDUuI1nufMOJSGhl5K9GsNH.18hS.63MU6VyPjmxhO",
       "role": "User",
@@ -46,7 +15,8 @@
       "courseFirst": "sdfsdfsdf",
       "school": "wefwefwefw",
       "studyFirstDateFrom": "2021-11-24",
-      "studyFirstDateTo": "2021-11-25"
+      "studyFirstDateTo": "2021-11-25",
+      "birthDate": "2021-11-10"
     },
     {
       "email": "admin2@admin.com",
@@ -77,6 +47,100 @@
       "lastName": "THiradfsqa",
       "phoneNumber": "1234567890",
       "id": 12
+    },
+    {
+      "email": "new.admin@admin.com",
+      "password": "$2a$10$JwkZROmtaGfbmKeI38Aio.Yn.UZlfXR0PEcHrBU9zjDfqwN6zQnf.",
+      "role": "Admin",
+      "id": 14,
+      "username": "Admin",
+      "firstName": "grea",
+      "lastName": "harm",
+      "phoneNumber": "09379992",
+      "birthDate": "2021-11-08",
+      "address": "ADress mY?????",
+      "school": "nOOO",
+      "universityFirst": "ascascasc",
+      "facultyFirst": "sacascasc",
+      "courseFirst": "ascascasc",
+      "studyFirstDateFrom": "2021-11-18",
+      "studyFirstDateTo": "2021-11-17",
+      "universitySecond": "ascrbrt htym 6uym6mtb",
+      "facultySecond": "erb tb b wr",
+      "courseSecond": "v web ym umbeb",
+      "studySecondDateFrom": "2021-11-12",
+      "studySecondDateTo": "2021-12-03",
+      "universityThird": "dsvsdv wrb 4n",
+      "facultyThird": "rw b4tyn5beb",
+      "courseThird": "ebf tnm ynb tb",
+      "studyThirdDateFrom": "2021-11-04",
+      "studyThirdDateTo": "2021-11-04"
+    },
+    {
+      "email": "user22@user.com",
+      "password": "$2a$10$uL0Tp/GjDF0sh93BsPy4VOBmxiv7TPGT1uMNwaN.YBvAK5y0pvcy6",
+      "role": "User",
+      "id": 15
+    },
+    {
+      "email": "user45@user.com",
+      "password": "$2a$10$yEpht8x2li6cPr1Lps9n/umG8wUzXpcosc/Gx4g.qjyXenYuZFY7e",
+      "role": "User",
+      "id": 16
+    },
+    {
+      "email": "user32@user.com",
+      "password": "$2a$10$hydHyprclwPygnVxztlPu.MI93eArf7AF5Zs1YTr/ATJH09yo1mKm",
+      "role": "User",
+      "id": 17
+    },
+    {
+      "email": "user23@user.com",
+      "password": "$2a$10$ZehmVx55AYiKIq9ja.g0/OIWnnFc9p7/m0FXJXp7civRMlaKX3OTy",
+      "username": "user",
+      "role": "User",
+      "firstName": "USer 13 1",
+      "lastName": "dsgfwE G",
+      "phoneNumber": "1234567890",
+      "id": 18
+    },
+    {
+      "email": "user44@user.com",
+      "password": "$2a$10$ZQm18fAY4B3O81NFjH43AeHTI9BN1MAWtzQ1SJBCOy2DrHXhF2fTm",
+      "role": "User",
+      "id": 19
+    },
+    {
+      "email": "user223@user.com",
+      "password": "$2a$10$kZ3Ktr4yoQ8HJQPs0wzG1ucWGuTSD6cahIk4CRPl8JhfLQDjcvCY.",
+      "role": "User",
+      "id": 20
+    },
+    {
+      "email": "aas@as.as",
+      "password": "$2a$10$V4Nd9WXaFJINgqL4sXfME.V5IJ3TrL0oyAkXzSvORth6qbCZi3Z06",
+      "role": "Admin",
+      "id": 21,
+      "username": "ADMIN",
+      "firstName": "Adam",
+      "lastName": "Omegon",
+      "phoneNumber": "1234567890",
+      "birthDate": "2021-03-11",
+      "address": "rgwergwrgwg",
+      "school": "ewgwe ergvwrg we weg",
+      "universityFirst": "wef wef wef ",
+      "facultyFirst": "weg we gwe weg",
+      "courseFirst": "wef wrgwe w",
+      "studyFirstDateFrom": "2021-11-05",
+      "studyFirstDateTo": "2021-11-05",
+      "universitySecond": "wef wegwe weg we",
+      "facultySecond": "weg weg weg weg ",
+      "courseSecond": "weg wegwe fwe ",
+      "studySecondDateFrom": "2021-09-11",
+      "studySecondDateTo": "2021-11-03",
+      "universityThird": "wegf weg weg",
+      "facultyThird": "we gfweg weg",
+      "courseThird": "weg weg weg"
     }
   ],
   "accounts": []

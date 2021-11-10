@@ -1,26 +1,33 @@
-import {Component, OnInit} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router} from "@angular/router";
+import { first } from "rxjs/operators";
+import { TranslateService } from "@ngx-translate/core";
+import { NotificationService } from "../services/notification.service";
 
 import { DataService } from "../services/data.service";
-import { first } from "rxjs/operators";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   templateUrl: "login.component.html",
 })
 export class LoginComponent implements OnInit{
+
   form!: FormGroup;
   returnUrl!: this;
   submitted: boolean = false;
-  loading: boolean = false;
   error = "";
 
   constructor(
+    private ngxSpinnerService: NgxSpinnerService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private notificationService: NotificationService,
     private route : ActivatedRoute,
     private dataService: DataService,
+    private translate: TranslateService,
   ) {
+    translate.setDefaultLang('en');
     if (this.dataService.userValue) {
       this.router.navigate(['/user']);
     }
@@ -39,20 +46,29 @@ export class LoginComponent implements OnInit{
     this.submitted = true;
 
     if(this.form.invalid) {
-      return console.log("There is an error...")
+      return this.notificationService.showError("Error", "Login")
     }
 
-    this.loading = true;
-    console.log(this.f.email.value, this.f.password.value);
+    this.ngxSpinnerService.show();
+
     this.dataService.login(this.f.email.value, this.f.password.value)
       .pipe(first())
-      .subscribe(data => {this.router.navigate(['/user/'])
-          console.log(data)
+      .subscribe(data =>
+        {
+          this.notificationService.showSuccess("Ok", "Login")
+          this.router.navigate(['/user/'])
         },
         error => {
+          this.ngxSpinnerService.hide();
+          this.notificationService.showError("Error", "Login")
           this.error = error
-          this.loading = false;
         })
+    let that = this;
+    setTimeout( function () {
+      that.ngxSpinnerService.hide();
+    },200);
+
+
   }
 
   get f() {

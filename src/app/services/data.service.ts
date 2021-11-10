@@ -31,7 +31,6 @@ export class DataService {
         if (user.user && user.accessToken) {
           localStorage.setItem('user', JSON.stringify(user));
           this.userSubject.next(user);
-          console.log(JSON.stringify(user));
         }
 
         return user;
@@ -62,8 +61,6 @@ export class DataService {
         { Authorization: "Bearer " + accessToken } })
       .pipe(map(x => {
         if (id == this.userValue.user.id) {
-          console.log(id);
-          console.log(this.userValue.user.id);
           // update local storage
           const user = { ...this.userValue, ...params };
           localStorage.setItem('user', JSON.stringify(user));

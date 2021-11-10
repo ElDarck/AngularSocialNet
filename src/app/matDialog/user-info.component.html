@@ -1,0 +1,70 @@
+<h2 mat-dialog-title class="text-center">{{'header.user' | translate | uppercase}}</h2>
+
+<mat-dialog-content>
+  <div class="container mt-2 mb-2 max">
+    <div class="d-flex flex-column">
+      <div class="d-block border-bottom border-white rounded pb-2">
+        <div class="d-block pl-1">
+          <div class="d-block mb-2">
+            <span class="">{{ 'user.username' | translate }}{{user.username}}</span>
+          </div>
+          <div class="d-block clearfix m-auto" style="height: 200px; width: 200px">
+            <img class="img-thumbnail bordered float-left mx-auto d-block mb-1" src="/assets/images/unnamed.jpg" alt="Avatar">
+          </div>
+          <div class="d-block mt-1">
+            <div *ngIf="user.birthDate !== undefined"><span class="d-block pt-2 pb-2">
+            {{ 'admin.birthday' | translate}} {{user.birthDate | date: "longDate"}}</span></div>
+            <div *ngIf="user.phoneNumber !== undefined"><span class="d-block mb-2">
+            {{ 'user.phone' | translate }} {{user.phoneNumber}}</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="d-block border-bottom border-top border-white rounded pb-2 pl-1">
+        <h2 class="mt-1">{{'header.user' | translate}}</h2>
+        <div class="d-block mt-1 mb-1">
+        <span class="pr-1" *ngIf="user.firstName !== undefined">
+          {{ 'user.name' | translate}} {{user.firstName}}</span>
+          <span class="pr-1" *ngIf="user.lastName !== undefined"> {{user.lastName}}</span>
+        </div>
+        <div class="d-block mt-1 mb-1">
+          <div *ngIf="user.address !== undefined"><span class="d-block mb-2 mt-1">
+          {{ 'admin.address' | translate}} {{user.address}}</span></div>
+        </div>
+      </div>
+      <div class="d-block border-top border-white rounded pt-2">
+        <h2 class="">{{ 'user.study' | translate}}</h2>
+        <div *ngIf="user.school !== undefined"><span class="">{{ 'user.school' | translate}} {{user.school}}</span></div>
+        <div class="d-block study mt-2">
+          <div class="d-flex flex-column"
+               *ngIf="user.universityFirst !== undefined || user.universitySecond !== undefined || user.universityThird !== undefined">
+            <div class="d-block mt-1 mb-1 pl-1 border-left border-info" *ngIf="user.universityFirst !== undefined">
+              <div class="d-block pt-1 pb-1">{{ 'user.place' | translate}}: {{user.universityFirst}}</div>
+              <div class="d-block pt-1 pb-1">{{ 'user.faculty' | translate}}: {{user.facultyFirst}}</div>
+              <div class="d-block pt-1 pb-1">{{ 'user.course' | translate}}: {{user.courseFirst}}</div>
+              <div class="d-block pt-1 pb-1">{{ 'user.ft' | translate}}:
+                {{user.studyFirstDateFrom | date: "longDate"}} - {{user.studyFirstDateTo | date: "longDate"}}</div>
+            </div>
+            <div class="d-block mt-1 mb-1 pl-1 border-left border-info" *ngIf="user.universitySecond !== undefined">
+              <div class="d-block pt-1 pb-1">{{ 'user.place' | translate}}: {{user.universitySecond}}</div>
+              <div class="d-block pt-1 pb-1">{{ 'user.faculty' | translate}}: {{user.facultySecond}}</div>
+              <div class="d-block pt-1 pb-1">{{ 'user.course' | translate}}: {{user.courseSecond}}</div>
+              <div class="d-block pt-1 pb-1">{{ 'user.ft' | translate}}:
+                {{user.studySecondDateFrom | date: "longDate"}} - {{user.studySecondDateTo | date: "longDate"}}</div>
+            </div>
+            <div class="d-block mt-1 mb-1 pl-1 border-left border-info" *ngIf="user.universityThird !== undefined">
+              <div class="d-block pt-1 pb-1">{{ 'user.place' | translate}}: {{user.universityThird}}</div>
+              <div class="d-block pt-1 pb-1">{{ 'user.faculty' | translate}}: {{user.facultyThird}}</div>
+              <div class="d-block pt-1 pb-1">{{ 'user.course' | translate}}: {{user.courseThird}}</div>
+              <div class="d-block pt-1 pb-1">{{ 'user.ft' | translate}}:
+                {{user.studyThirdDateFrom | date: "longDate"}} - {{user.studyThirdDateTo | date: "longDate"}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button ml-2" (click)="close()">{{ 'dialog.close' | translate }}</button>
+</mat-dialog-actions>

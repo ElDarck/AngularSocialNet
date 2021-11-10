@@ -1,42 +1,47 @@
 <div class="container mw-100 mb-2">
   <div class="row align-items-stretch">
-    <div class="left-col d-block border-right border-dark mw-50 mr-2 pr-3 rounded-right">
+    <div class="left-col d-block border-right border-left border-dark mw-50 mr-2 pl-2 pr-3 rounded first">
       <div class="d-flex flex-column">
         <div class="d-flex flex-column mb-2">
-          <span class="d-block m-2 text-left">User: {{user.username}}</span>
+          <span class="d-block m-2 text-left">{{ 'user.username' | translate }}{{user.username}}</span>
         </div>
         <div class="d-block mb-3 clearfix" style="height: 200px; width: 200px">
           <img class="img-thumbnail bordered float-left mx-auto d-block mb-1" src="/assets/images/unnamed.jpg" alt="Avatar">
         </div>
-        <button class="btn btn-warning d-block mb-2" (click)="openDialog(this.user.id, this.isAdd =false)">Edit</button>
+        <button class="btn btn-warning d-block mb-2" (click)="openDialog(this.user.id, this.isAdd =false)">
+          {{ 'user.edit' | translate }}</button>
         <div class="d-flex flex-column mb-3">
-          <div *ngIf="user.birthDate !== undefined"><span class="d-block m-2">Birthday: {{user.birthDate}}</span></div>
-          <div *ngIf="user.phoneNumber !== undefined"><span class="d-block m-2">Phone number: {{user.phoneNumber}}</span></div>
+          <div *ngIf="user.birthDate !== undefined"><span class="d-block m-2">
+            {{ 'admin.birthday' | translate}} {{user.birthDate | date: "longDate"}}</span></div>
+          <div *ngIf="user.phoneNumber !== undefined"><span class="d-block m-2">
+            {{ 'user.phone' | translate }} {{user.phoneNumber}}</span></div>
         </div>
       </div>
     </div>
-    <div class="right-col ml-3 d-block border-right mw-50 border-left border-dark rounded">
-      <h2 class="mt-2 d-block text-uppercase text-center text-bold">User Info</h2>
+    <div class="right-col ml-2 d-block mw-50 pl-2 pr-3 border-right border-left border-dark rounded second">
+      <h2 class="mt-2 d-block text-uppercase text-center text-bold">{{'header.user' | translate}}</h2>
       <div class="d-block mb-2 text-left mt-3">
-        <span class="d-inline-block ml-2" *ngIf="user.firstName !== undefined">Name: {{user.firstName}}</span>
+        <span class="d-inline-block ml-2" *ngIf="user.firstName !== undefined">
+          {{ 'user.name' | translate}} {{user.firstName}}</span>
         <span class="d-inline-block ml-1" *ngIf="user.lastName !== undefined"> {{user.lastName}}</span>
       </div>
       <div class="d-flex flex-column mb-3">
-        <div *ngIf="user.address !== undefined"><span class="d-block m-2">Address: {{user.address}}</span></div>
-        <div *ngIf="user.school !== undefined"><span class="d-block m-2">School: {{user.school}}</span></div>
+        <div *ngIf="user.address !== undefined"><span class="d-block m-2">
+          {{ 'admin.address' | translate}} {{user.address}}</span></div>
+        <div *ngIf="user.school !== undefined"><span class="d-block m-2">{{ 'user.school' | translate}} {{user.school}}</span></div>
       </div>
     </div>
-    <div class="right-col d-block border-top mw-100 border-bottom border-dark rounded">
-      <h2 class="mt-2 d-block text-uppercase text-center text-bold">User Study</h2>
+    <div class="right-col mt-2 d-block pl-2 pr-3 border-top mw-100 border-bottom border-dark rounded third">
+      <h2 class="mt-2 d-block text-uppercase text-center text-bold">{{ 'user.study' | translate}}</h2>
       <div class="d-flex flex-collum ml-2">
         <table class="table table-striped"
                *ngIf="user.universityFirst !== undefined || user.universitySecond !== undefined || user.universityThird !== undefined">
           <thead>
           <tr>
-            <th scope="col">Place of study</th>
-            <th scope="col">Faculty</th>
-            <th scope="col">Course</th>
-            <th scope="col">From-To</th>
+            <th scope="col">{{ 'user.place' | translate}}</th>
+            <th scope="col">{{ 'user.faculty' | translate}}</th>
+            <th scope="col">{{ 'user.course' | translate}}</th>
+            <th scope="col">{{ 'user.ft' | translate}}</th>
           </tr>
           </thead>
           <tbody>
@@ -44,19 +49,19 @@
             <td>{{user.universityFirst}}</td>
             <td>{{user.facultyFirst}}</td>
             <td>{{user.courseFirst}}</td>
-            <td>{{user.studyFirstDateFrom}}-{{user.studyFirstDateTo}}</td>
+            <td>{{user.studyFirstDateFrom | date: "longDate"}} - {{user.studyFirstDateTo | date: "longDate"}}</td>
           </tr>
           <tr *ngIf="user.universitySecond !== undefined">
             <td>{{user.universitySecond}}</td>
             <td>{{user.facultySecond}}</td>
             <td>{{user.courseSecond}}</td>
-            <td>{{user.studySecondDateFrom}}-{{user.studySecondDateTo}}</td>
+            <td>{{user.studySecondDateFrom | date: "longDate"}} - {{user.studySecondDateTo | date: "longDate"}}</td>
           </tr>
           <tr *ngIf="user.universityThird !== undefined">
             <td>{{user.universityThird}}</td>
             <td>{{user.facultyThird}}</td>
             <td>{{user.courseThird}}</td>
-            <td>{{user.studyThirdDateFrom}}-{{user.studyThirdDateTo}}</td>
+            <td>{{user.studyThirdDateFrom | date: "longDate"}} - {{user.studyThirdDateTo | date: "longDate"}}</td>
           </tr>
           </tbody>
         </table>

@@ -1,188 +1,215 @@
-<h2 mat-dialog-title>Edit user data:</h2>
+<h2 mat-dialog-title>{{ 'dialog.title' | translate }}</h2>
 
 <mat-dialog-content>
+
   <div *ngIf="isAdd === false">
-    <h3>User general info</h3>
-    <p>User ID:{{this.userId}}</p>
+    <h3>{{ 'dialog.title-content' | translate }}</h3>
+    <p>{{ 'dialog.id' | translate }}{{this.userId}}</p>
   </div>
   <div *ngIf="isAdd === true">
-    <h3>Create new User:</h3>
+    <h3>{{ 'dialog.create' | translate}}</h3>
   </div>
 
-  <form [formGroup]="formUser" (ngSubmit)="onSubmit(formUser.value, null)">
+  <form [formGroup]="formUser">
     <div class="form-group col">
-      <label for="username">Username *</label>
+      <label for="username">{{ 'dialog.username' | translate}} *</label>
       <input id="username" type="text" formControlName="username" class="form-control"
-             [ngClass]="{'is-invalid': submitted && f.username.errors}">
+             placeholder="{{ 'dialog.username' | translate}}" [ngClass]="{'is-invalid': submitted && f.username.errors}">
       <div class="invalid-feedback" *ngIf="submitted && f.username.errors">
-        <div *ngIf="f.username.errors.required">Username is required</div>
+        <div *ngIf="f.username.errors.required">{{ 'dialog.usernamereq' | translate}}</div>
       </div>
     </div>
+
     <div class="form-group col">
-      <label for="email">email*</label>
+      <label for="email">{{ 'dialog.email' | translate}}*</label>
       <input id="email" type="email" formControlName="email" class="form-control"
-             [ngClass]="{'is-invalid': submitted && f.email.errors}">
+             placeholder="{{ 'dialog.email' | translate}}" [ngClass]="{'is-invalid': submitted && f.email.errors}">
       <div class="invalid-feedback" *ngIf="submitted && f.email.errors">
-        <div *ngIf="f.email.errors.required">Email is required</div>
+        <div *ngIf="f.email.errors.required">{{ 'dialog.emailreq' | translate}}</div>
       </div>
     </div>
+
     <div *ngIf="isAdd" class="form-group col">
       <div class="form-group">
-        <p>Role:</p>
+        <p>{{ 'dialog.role' | translate}}</p>
         <div class="d-flex flex-row">
-          <label class="d-inline-block" for="roleAdmin">Admin:</label>
+          <label class="d-inline-block" for="roleAdmin">{{ 'dialog.admin' | translate}}</label>
           <input id="roleAdmin" type="radio" formControlName="role" value="Admin" class="form-control d-inline-block"
                  [ngClass]="{'is-invalid': submitted && f.role.errors}">
         </div>
         <div class="d-flex flex-row">
-          <label class="d-inline-block" for="roleUser">User:</label>
+          <label class="d-inline-block" for="roleUser">{{ 'dialog.user' | translate}}</label>
           <input id="roleUser" type="radio" formControlName="role" value="User" class="form-control d-inline-block"
                  [ngClass]="{'is-invalid': submitted && f.role.errors}">
         </div>
         <div class="invalid-feedback" *ngIf="submitted && f.role.errors">
-          <div *ngIf="f.role.errors.required">Role is required</div>
+          <div *ngIf="f.role.errors.required">{{ 'dialog.rolereq' | translate }}</div>
         </div>
       </div>
     </div>
+
     <div class="form-group col">
-      <label for="password">Password *</label>
+      <label for="password">{{ 'dialog.pass' | translate }}*</label>
       <input id="password" type="password" formControlName="password" class="form-control"
-             [ngClass]="{'is-invalid': submitted && f.password.errors}">
+             placeholder="{{ 'dialog.pass' | translate }}" [ngClass]="{'is-invalid': submitted && f.password.errors}">
       <div class="invalid-feedback" *ngIf="submitted && f.password.errors">
-        <div *ngIf="f.password.errors.required">Password is required</div>
+        <div *ngIf="f.password.errors.required">{{ 'dialog.passreq' | translate }}</div>
       </div>
     </div>
+
     <div class="form-group col">
-      <label for="firstName">First name *</label>
+      <label for="firstName">{{ 'dialog.fname' | translate }}*</label>
       <input id="firstName" type="text" formControlName="firstName" class="form-control"
+             placeholder="{{ 'dialog.fname' | translate }}"
              [ngClass]="{'is-invalid': submitted && f.firstName.errors}">
       <div class="invalid-feedback" *ngIf="submitted && f.firstName.errors">
-        <div *ngIf="f.firstName.errors.required">First name is required</div>
+        <div *ngIf="f.firstName.errors.required">{{ 'dialog.fnamereq' | translate }}</div>
       </div>
     </div>
+
     <div class="form-group col">
-      <label for="lastName">Last name *</label>
+      <label for="lastName">{{ 'dialog.lname' | translate }} *</label>
       <input id="lastName" type="text" formControlName="lastName" class="form-control"
-             [ngClass]="{'is-invalid': submitted && f.lastName.errors}">
+             placeholder="{{ 'dialog.lname' | translate }}" [ngClass]="{'is-invalid': submitted && f.lastName.errors}">
       <div class="invalid-feedback" *ngIf="submitted && f.lastName.errors">
-        <div *ngIf="f.lastName.errors.required">Last name is required</div>
+        <div *ngIf="f.lastName.errors.required">{{ 'dialog.lnamereq' | translate }}</div>
       </div>
     </div>
+
     <div class="form-group col">
-      <label for="phoneNumber">Phone *</label>
-      <input id="phoneNumber" type="text" formControlName="phoneNumber"
+      <label for="phoneNumber">{{ 'dialog.phone' | translate}} *</label>
+      <input id="phoneNumber" type="text" formControlName="phoneNumber" placeholder="{{ 'dialog.phone' | translate}}"
              class="form-control" [ngClass]="{'is-invalid': submitted && f.phoneNumber.errors}">
       <div class="invalid-feedback" *ngIf="submitted && f.phoneNumber.errors">
-        <div *ngIf="f.phoneNumber.errors.required">Phone is required</div>
+        <div *ngIf="f.phoneNumber.errors.required">{{ 'dialog.phonereq' | translate }}</div>
       </div>
     </div>
+
     <div class="form-group col">
     </div>
-    <button *ngIf="!isAdd" [disabled]="loading" class="btn btn-primary mr-2" type="submit">
-      <span *ngIf="loading" class="spinner-border spinner-border-sm m-1"></span>
-      Save
+
+    <button *ngIf="!isAdd" class="btn btn-primary mr-2" type="submit"
+            (click)="onSubmit(formUser.value, this.f1 = true,  this.f2 = true)">
+      {{ 'dialog.save' | translate }}
     </button>
-    <button *ngIf="isAdd" [disabled]="loading" class="btn btn-primary mr-2" type="submit">
-      <span *ngIf="loading" class="spinner-border spinner-border-sm m-1"></span>
-      Add
+    <button *ngIf="isAdd" class="btn btn-primary mr-2" type="submit"
+            (click)="onSubmit(formUser.value, this.f1 = true, this.f2 = true)">
+      {{ 'dialog.add' | translate}}
     </button>
+
   </form>
-  <h3 *ngIf="isAdd === false">About User</h3>
-  <form *ngIf="isAdd === false" [formGroup]="formEducation" (ngSubmit)="onSubmit(null, formEducation.value)">
-    <div class="form-group col pt-2 pb-2">
-      <label for="birthDate">Birthday</label>
+  <h3 *ngIf="isAdd === false" class="mt-2">{{ 'dialog.about' | translate }}</h3>
+  <form class="mt-2" *ngIf="isAdd === false" [formGroup]="formEducation">
+    <div class="form-group col mt-2 pb-2">
+      <label for="birthDate">{{ 'admin.birthday' | translate }}</label>
       <input id="birthDate" type="date" formControlName="birthDate" class="form-control"
              [ngClass]="{'is-invalid': submitted && e.birthDate.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.birthDate.errors">
       </div>
     </div>
-    <div class="form-group col pt-2 pb-2">
-      <label for="address">Address</label>
+    <div class="form-group col mt-2 pb-2">
+      <label for="address">{{ 'dialog.address' | translate }}</label>
       <input id="address" type="text" class="form-control" formControlName="address"
-             [ngClass]="{'is-invalid': submitted && e.address.errors}">
+             placeholder="{{ 'dialog.address' | translate }}" [ngClass]="{'is-invalid': submitted && e.address.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.address.errors">
       </div>
     </div>
-    <div class="form-group col pt-2 pb-2">
-      <label for="school">School</label>
-      <input id="school" type="text" formControlName="school" class="form-control"
+    <div class="form-group col mt-2 pb-2">
+      <label for="school">{{ 'user.school' | translate }}</label>
+      <input id="school" type="text" formControlName="school" class="form-control" placeholder="{{ 'user.school' | translate}}"
              [ngClass]="{'is-invalid': submitted && e.school.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.school.errors">
       </div>
     </div>
-    <div class="form-group col pt-2 pb-2">
-      <label for="universityFirst">First university</label>
+    <div class="form-group col mt-2 pb-2">
+      <label for="universityFirst">{{ 'dialog.university1' | translate}}</label>
       <input id="universityFirst" type="text" formControlName="universityFirst" class="form-control"
+             placeholder="{{ 'dialog.university1' | translate }}"
              [ngClass]="{'is-invalid': submitted && e.universityFirst.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.universityFirst.errors"></div>
-      <label for="universityFirst">Faculty</label>
+
+      <label for="universityFirst">{{ 'user.faculty' | translate }}</label>
       <input id="facultyFirst" type="text" formControlName="facultyFirst" class="form-control"
-               [ngClass]="{'is-invalid': submitted && e.facultyFirst.errors}">
+             placeholder="{{ 'user.faculty' | translate }}" [ngClass]="{'is-invalid': submitted && e.facultyFirst.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.facultyFirst.errors"></div>
-      <label for="courseFirst">Course</label>
+
+      <label for="courseFirst">{{ 'user.course' | translate }}</label>
       <input id="courseFirst" type="text" formControlName="courseFirst" class="form-control"
+             placeholder="{{ 'user.course' | translate }}"
              [ngClass]="{'is-invalid': submitted && e.courseFirst.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.courseFirst.errors"></div>
-      <label for="studyFirstDateFrom">Study from</label>
+
+      <label for="studyFirstDateFrom">{{ 'dialog.from' | translate }}</label>
       <input id="studyFirstDateFrom" type="date" formControlName="studyFirstDateFrom" class="form-control"
              [ngClass]="{'is-invalid': submitted && e.studyFirstDateFrom.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.studyFirstDateFrom.errors"></div>
-      <label for="studyFirstDateTo">Study to</label>
+
+      <label for="studyFirstDateTo">{{ 'dialog.to' | translate }}</label>
       <input id="studyFirstDateTo" type="date" formControlName="studyFirstDateTo" class="form-control"
              [ngClass]="{'is-invalid': submitted && e.studyFirstDateTo.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.studyFirstDateTo.errors"></div>
     </div>
-    <div class="form-group col pt-2 pb-2">
-      <label for="universitySecond">Second university</label>
+    <div class="form-group col mt-2 pb-2">
+      <label for="universitySecond">{{ 'dialog.university2' | translate}}</label>
       <input id="universitySecond" type="text" formControlName="universitySecond" class="form-control"
+             placeholder="{{ 'dialog.university2' | translate}}"
              [ngClass]="{'is-invalid': submitted && e.universitySecond.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.universitySecond.errors"></div>
-      <label for="facultySecond">Faculty</label>
+
+      <label for="facultySecond">{{ 'user.faculty' | translate }}</label>
       <input id="facultySecond" type="text" formControlName="facultySecond" class="form-control"
-             [ngClass]="{'is-invalid': submitted && e.facultySecond.errors}">
+             placeholder="{{ 'user.faculty' | translate }}" [ngClass]="{'is-invalid': submitted && e.facultySecond.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.facultySecond.errors"></div>
-      <label for="courseSecond">Course</label>
+
+      <label for="courseSecond">{{ 'user.course' | translate }}</label>
       <input id="courseSecond" type="text" formControlName="courseSecond" class="form-control"
-             [ngClass]="{'is-invalid': submitted && e.courseSecond.errors}">
+             placeholder="{{ 'user.course' | translate }}" [ngClass]="{'is-invalid': submitted && e.courseSecond.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.courseSecond.errors"></div>
-      <label for="studySecondDateFrom">Study from</label>
+
+      <label for="studySecondDateFrom">{{ 'dialog.from' | translate }}</label>
       <input id="studySecondDateFrom" type="date" formControlName="studySecondDateFrom" class="form-control"
              [ngClass]="{'is-invalid': submitted && e.studySecondDateFrom.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.studySecondDateFrom.errors"></div>
-      <label for="studySecondDateTo">Study to</label>
+
+      <label for="studySecondDateTo">{{ 'dialog.to' | translate }}</label>
       <input id="studySecondDateTo" type="date" formControlName="studySecondDateTo" class="form-control"
              [ngClass]="{'is-invalid': submitted && e.studySecondDateTo.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.studySecondDateTo.errors"></div>
     </div>
-    <div class="form-group col pt-2 pb-2">
-      <label for="universityThird">Third university</label>
+    <div class="form-group col mt-2 pb-2">
+      <label for="universityThird">{{ 'dialog.university3' | translate}}</label>
       <input id="universityThird" type="text" formControlName="universityThird" class="form-control"
+             placeholder="{{ 'dialog.university3' | translate}}"
              [ngClass]="{'is-invalid': submitted && e.universityThird.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.universityThird.errors"></div>
-      <label for="facultyThird">Faculty</label>
+
+      <label for="facultyThird">{{ 'user.faculty' | translate }}</label>
       <input id="facultyThird" type="text" formControlName="facultyThird" class="form-control"
-             [ngClass]="{'is-invalid': submitted && e.facultyThird.errors}">
+             placeholder="{{ 'user.faculty' | translate }}" [ngClass]="{'is-invalid': submitted && e.facultyThird.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.facultyThird.errors"></div>
-      <label for="courseThird">Course</label>
+
+      <label for="courseThird">{{ 'user.course' | translate }}</label>
       <input id="courseThird" type="text" formControlName="courseThird" class="form-control"
-             [ngClass]="{'is-invalid': submitted && e.courseThird.errors}">
+             placeholder="{{ 'user.course' | translate }}" [ngClass]="{'is-invalid': submitted && e.courseThird.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.courseThird.errors"></div>
-      <label for="studyThirdDateFrom">Study from</label>
+
+      <label for="studyThirdDateFrom">{{ 'dialog.from' | translate }}</label>
       <input id="studyThirdDateFrom" type="date" formControlName="studyThirdDateFrom" class="form-control"
              [ngClass]="{'is-invalid': submitted && e.studyThirdDateFrom.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.studyThirdDateFrom.errors"></div>
-      <label for="studyThirdDateTo">Study to</label>
+
+      <label for="studyThirdDateTo">{{ 'dialog.to' | translate }}</label>
       <input id="studyThirdDateTo" type="date" formControlName="studyThirdDateTo" class="form-control"
              [ngClass]="{'is-invalid': submitted && e.studyFirstDateTo.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.studyFirstDateTo.errors"></div>
     </div>
-    <button *ngIf="!isAdd" [disabled]="loading" class="btn btn-primary mr-2" type="submit">
-      <span *ngIf="loading" class="spinner-border spinner-border-sm m-1"></span>
-      Save
+    <button *ngIf="!isAdd" class="btn btn-primary mr-2" type="submit"
+            (click)="onSubmit(formEducation.value , this.f1=false, this.f2 = true)">
+      {{ 'dialog.save' | translate }}
     </button>
   </form>
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button class="mat-raised-button ml-2" (click)="close()">Close</button>
+  <button class="mat-raised-button ml-2" (click)="close()">{{ 'dialog.close' | translate }}</button>
 </mat-dialog-actions>

@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { first } from "rxjs/operators";
 
 import { DataService } from "../services/data.service";
+import {TranslateService} from "@ngx-translate/core";
+import {NotificationService} from "../services/notification.service";
+import {NgxSpinnerService} from "ngx-spinner";
 
 
 @Component({
@@ -13,14 +16,17 @@ export class RegistrationComponent implements OnInit{
 
   form!: FormGroup;
   submitted: boolean = false;
-  loading: boolean = false
 
   constructor(
     private formBuilder: FormBuilder,
+    private notificationService: NotificationService,
     private router: Router,
     private route : ActivatedRoute,
     private dataService: DataService,
+    private translate: TranslateService,
+    private ngxSpinnerService: NgxSpinnerService
   ) {
+    translate.setDefaultLang('en');
   }
 
   ngOnInit () {
@@ -35,20 +41,28 @@ export class RegistrationComponent implements OnInit{
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.form.value)
     if(this.form.invalid) {
-      return console.log("There is an error...");
+      return this.notificationService.showError("Error", "Registration")
     }
 
-    this.loading = true;
+    this.ngxSpinnerService.show();
+
     this.dataService.register(this.form.value)
       .pipe(first())
       .subscribe(
-        data => {this.router.navigate(['../login'], {relativeTo: this.route})},
+        data => {
+          this.notificationService.showSuccess("All done well", "Registration")
+          this.router.navigate(['../login'], {relativeTo: this.route}
+          )},
         error => {
-          this.loading = false
+          this.ngxSpinnerService.hide();
+          this.notificationService.showError("Error", "Registration")
         }
       )
+    let that = this;
+    setTimeout( function() {
+      that.ngxSpinnerService.hide()
+    }, 1000)
   }
 
 }

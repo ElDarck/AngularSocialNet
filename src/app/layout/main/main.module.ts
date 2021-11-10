@@ -9,6 +9,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { AccountRoutingModule } from "../../account/account-routing.module";
 import { UsersModule } from "../../users/users.module";
 import { AccountModule } from "../../account/account.module";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AccountModule } from "../../account/account.module";
         AccountRoutingModule,
         UsersModule,
         AccountModule,
+        TranslateModule,
     ]
 })
 export class MainModule { }

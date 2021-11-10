@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "footer-component",
@@ -6,5 +7,10 @@ import { Component } from "@angular/core";
   styleUrls: ["footer.component.sass"]
 })
 export class FooterComponent {
+
+  constructor(private translate: TranslateService,) {
+    translate.setDefaultLang('en');
+  }
+
 
 }

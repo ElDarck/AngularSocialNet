@@ -1,4 +1,5 @@
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+@import '~ngx-toastr/toastr.css';
 
 * {
   padding: 0;
@@ -29,3 +30,17 @@ ul li {list-style: none;}
 img {vertical-align: top;}
 
 h1,h2,h3,h4,h5,h6 { font-size: inherit; font-weight: 400;}
+
+html{
+
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body
+{
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}

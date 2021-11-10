@@ -1,62 +1,31 @@
-<div class="container border border-success rounded-left bg-info mb-3" *ngFor="let user of users">
-  <span class="d-block m-1 text-center text-uppercase font-weight-bold">User Info:</span>
+<div class="container border border-warning rounded bg-success mb-3 pt-1 pb-1">
+  <div class="search-users">
+    <input type="text" class="form-control" name="search" [(ngModel)]="searchText" autocomplete="off"
+           placeholder="&#61442;  {{ 'admin.search-user' | translate }}">
+  </div>
+</div>
+
+<div class="container border border-success rounded-left bg-info mb-3" *ngFor="let user of users | filter: searchText">
+  <span class="d-block m-1 text-center text-uppercase font-weight-bold">{{ 'userlist.user-info' | translate }}</span>
   <div class="d-block text-white">
-    <div class="d-inline-block m-2">
-      <span class="text-center mb-2">Name info: </span>
+    <div class="d-inline-block m-2" >
+      <span class="text-center mb-2">{{ 'userlist.name-info' | translate }}</span>
       <ul class="mt-2">
         <li class="mb-1"><span *ngIf="user.firstName !== undefined || user.lastName !== undefined">
-        Name: {{user.firstName}} {{user.lastName}}</span></li>
-        <li class="mb-1"><span *ngIf="user.username !== undefined">Username: {{user.username}}</span></li>
-        <li><span>User role: {{user.role}}</span></li>
+        {{ 'userlist.name' | translate }}{{user.firstName}} {{user.lastName}}</span></li>
+        <li class="mb-1"><span *ngIf="user.username !== undefined">
+          {{ 'userlist.username' | translate }}{{user.username}}</span></li>
+        <li><span>{{ 'userlist.user-role' | translate }}{{user.role}}</span></li>
       </ul>
-    </div>
-    <div class="d-inline-block m-2">
-      <span class="text-center mb-2">Personal data info: </span>
-      <ul class="mt-2">
-        <li class="mb-1"><span *ngIf="user.birthDate !== undefined">Birthday: {{user.birthDate}}</span></li>
-        <li class="mb-1"><span *ngIf="user.phoneNumber !== undefined">Phone number: {{user.phoneNumber}}</span></li>
-        <li><span *ngIf="user.address !== undefined">Address: {{user.address}}</span></li>
-      </ul>
-    </div>
-    <div class="d-block m-2" *ngIf="user.school !== undefined">
-      <span class="text-center mb-2">Study info: </span>
-      <div *ngIf="user.school !== undefined">School:{{user.school}}</div>
-      <table class="table table-striped" *ngIf="user.universityFirst !== undefined">
-        <thead>
-          <tr>
-            <th scope="col">Place of study</th>
-            <th scope="col">Faculty</th>
-            <th scope="col">Course</th>
-            <th scope="col">From-To</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngIf="user.universityFirst !== undefined">
-            <td>{{user.universityFirst}}</td>
-            <td>{{user.facultyFirst}}</td>
-            <td>{{user.courseFirst}}</td>
-            <td>{{user.studyFirstDateFrom}}-{{user.studyFirstDateTo}}</td>
-          </tr>
-          <tr *ngIf="user.universitySecond !== undefined">
-            <td>{{user.universitySecond}}</td>
-            <td>{{user.facultySecond}}</td>
-            <td>{{user.courseSecond}}</td>
-            <td>{{user.studySecondDateFrom}}-{{user.studySecondDateTo}}</td>
-          </tr>
-          <tr *ngIf="user.universityThird !== undefined">
-            <td>{{user.universityThird}}</td>
-            <td>{{user.facultyThird}}</td>
-            <td>{{user.courseThird}}</td>
-            <td>{{user.studyThirdDateFrom}}-{{user.studyThirdDateTo}}</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
   <div class="d-block mb-2">
-    <button (click)="openDialog(user.id)" type="button" class="btn btn-warning mr-1"
-            *ngIf="this.currentUser.user.id === user.id || this.currentUser.user.role === isAdmin">Edit User</button>
+    <button (click)="openInfo(this.user)" *ngIf="this.currentUser.user.role === isAdmin"
+            type="button" class="btn btn-light mr-2">{{ 'userlist.user-watch' | translate }}</button>
+    <button (click)="openDialog(user.id, isAdd = false)" type="button" class="btn btn-warning mr-1"
+            *ngIf="this.currentUser.user.id === user.id || this.currentUser.user.role === isAdmin">
+      {{ 'admin.edit' | translate }}</button>
     <button (click)="deleteUser(user.id)" *ngIf="this.currentUser.user.role === isAdmin"
-            type="button" class="btn btn-danger ml-1">Delete User</button>
+            type="button" class="btn btn-danger ml-1">{{ 'admin.delete' | translate }}</button>
   </div>
 </div>

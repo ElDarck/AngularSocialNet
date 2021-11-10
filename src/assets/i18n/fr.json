@@ -1,0 +1,110 @@
+{
+  "app": {
+    "spinner" : "S'il vous plaît, attendez"
+  },
+  "header": {
+    "allUsers" : "Tous les utilisateurs",
+    "admin" : "Panneau d'administration",
+    "user" : "Informations utilisateur",
+    "exit" : "Se déconnecter",
+    "lang" : "Lang",
+    "langEn" : "Eng",
+    "langFr" : "Fr"
+  },
+  "footer": {
+    "rights" : "Tous les droits sont réservés"
+  },
+  "admin": {
+    "title" : "Panneau d'administration",
+    "card-body-p1": "Cette page est accessible UNIQUEMENT par l'administrateur",
+    "card-body-p2" : "Tous les utilisateurs du point de terminaison d'API sécurisé (administrateur uniquement):",
+    "button-add" : "Ajouter un nouvel utilisateur",
+    "search-user" : "Commencer la recherche d'un utilisateur",
+    "user-role" : "Rôle d'utilisateur:",
+    "user-name" : "Nom d'utilisateur::",
+    "email" : "E-mail:",
+    "phone" : "Téléphone:",
+    "birthday": "Anniversaire: ",
+    "address": "Adresse:",
+    "edit": "Modifier l'utilisateur",
+    "delete": "Supprimer l'utilisateur"
+  },
+  "user" : {
+    "username" : "Utilisateur: ",
+    "edit": "Éditer",
+    "phone": "Numéro de téléphone:",
+    "name" : "Nom:",
+    "school" : "L'école:",
+    "study": "Étude d'utilisateur",
+    "place": "Lieu d'étude",
+    "faculty": "La faculté",
+    "course": "Cours",
+    "ft": "Début - Fin"
+  },
+  "userlist": {
+    "user-info": "Informations utilisateur:",
+    "name-info": "Informations sur le nom: ",
+    "name": "Nom: ",
+    "username": "Nom d'utilisateur: ",
+    "user-role": "Rôle d'utilisateur: ",
+    "data-info": "Informations sur les données personnelles: ",
+    "user-study-info": "Informations sur l'étude: ",
+    "user-watch": "Info"
+  },
+  "registration" : {
+    "sing-in": "S'identifier",
+    "email": "E-mail",
+    "emailreq" : "L'e-mail est requis",
+    "pass": "Mot de passe",
+    "passreq" : "Mot de passe requis\n",
+    "passreqlong": "Le mot de passe doit être au moins de 6 caractères",
+    "admin": "Administrateur:",
+    "role": "Rôle:",
+    "user": "Utilisateur:",
+    "rolereq": "Le rôle est requis",
+    "reg": "S'identifier",
+    "login": "Connexion"
+  },
+  "login": {
+    "login" : "Connexion"
+  },
+  "dialog": {
+    "title": "Modifier les données utilisateur :",
+    "title-content": "Informations générales sur l'utilisateur",
+    "id": "Identifiant d'utilisateur: ",
+    "create": "Créer un nouvel utilisateur:",
+    "username": "Nom d'utilisateur",
+    "usernamereq": "Nom d'utilisateur est nécessaire",
+    "email": "E-mail",
+    "emailreq": "Un e-mail est requis",
+    "role" : "Rôle:",
+    "admin": "Administrateur:",
+    "user": "Utilisateur:",
+    "rolereq": "Le rôle est requis",
+    "pass": "Mot de passe",
+    "passreq": "Mot de passe requis",
+    "fname": "Prénom ",
+    "fnamereq": "Le prénom est requis",
+    "lname": "Nom de famille",
+    "lnamereq": "Le nom de famille est requis",
+    "phone": "Téléphone",
+    "phonereq": "Le téléphone est requis",
+    "save": "Sauvegarder",
+    "add": "Ajouter",
+    "about": "À propos de l'utilisateur",
+    "address": "Adresse",
+    "university1": "Première université",
+    "university2" : "Second university",
+    "university3": "Deuxième université",
+    "from": "Étude de",
+    "to": "Study to",
+    "close": "Étudier à"
+  },
+  "delete": {
+    "title": "Supprimer cet utilisateur ?",
+    "content": "Es-tu sûr? Vous voulez supprimer cet utilisateur ?",
+    "del": "Effacer",
+    "close": "Proche"
+  }
+
+}

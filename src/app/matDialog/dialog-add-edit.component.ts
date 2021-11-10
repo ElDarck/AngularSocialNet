@@ -1,19 +1,24 @@
-import {Component, Inject, OnInit} from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { first } from "rxjs/operators";
+import { TranslateService } from "@ngx-translate/core";
 
 import { DataService } from "../services/data.service";
 import { User } from "../models/user";
+import { NotificationService } from "../services/notification.service";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: "dialog-box",
-  templateUrl: "dialogBody.component.html"
+  templateUrl: "dialog-add-edit.component.ts.html"
 })
-export class DialogBodyComponent implements OnInit{
+export class DialogAddEdit implements OnInit{
 
   formUser! : FormGroup;
+  f1!: boolean;
   formEducation!: FormGroup;
+  f2!: boolean;
   submitted!: boolean;
   loading!: boolean;
   user!: User;
@@ -27,15 +32,19 @@ export class DialogBodyComponent implements OnInit{
     // @ts-ignore
     private dialogRef: MatDialogRef<DialogBodyComponent>,
     private dataService: DataService,
+    private ngxSpinnerService: NgxSpinnerService,
     private formBuilder: FormBuilder,
+    private translate: TranslateService,
+    private notificationService: NotificationService
   ) {
+    translate.setDefaultLang('en');
     if (data) { this.userId = data.id; this.accessToken = data.accessToken; this.isAdd = data.isAdd}
-    console.log(this.userId);
     this.getById()
   }
 
   getById(){
     if(!this.isAdd) {
+      this.notificationService.showInfo("Edit mode", "Mode")
       this.dataService.getById(this.userId)
         .pipe(first())
         .subscribe(x => {
@@ -64,39 +73,39 @@ export class DialogBodyComponent implements OnInit{
           this.e.studyThirdDateFrom.setValue(x.studyThirdDateFrom);
           this.e.studyThirdDateTo.setValue(x.studyThirdDateTo);
         });
-    } else {console.log("This is add mode")}
+    } else {this.notificationService.showInfo("Adding mode", "Mode")}
   }
 
   ngOnInit() {
     this.formUser = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.min(3)]],
-      email: ['', [Validators.required]],
-      role: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.min(5)]],
-      firstName: ['', [Validators.required, Validators.min(3)]],
-      lastName: ['', [Validators.required, Validators.min(3)]],
-      phoneNumber: ['', [Validators.required, Validators.min(10)]],
+      username: ["", [Validators.required, Validators.min(3)]],
+      email: ["", [Validators.required]],
+      role: ["", [Validators.required]],
+      password: ["", [Validators.required, Validators.min(5)]],
+      firstName: ["", [Validators.required, Validators.min(3)]],
+      lastName: ["", [Validators.required, Validators.min(3)]],
+      phoneNumber: ["", [Validators.required, Validators.min(10)]],
     })
     if (!this.isAdd){
       this.formEducation = this.formBuilder.group({
-        birthDate: ['', [ Validators.min(1)]],
-        address: ['', [Validators.min(5)]],
-        school: ['', [Validators.min(10)]],
-        universityFirst: ['', [Validators.min(10)]],
-        facultyFirst: ['', [Validators.min(10)]],
-        courseFirst: ['', [Validators.min(10)]],
-        studyFirstDateFrom: ['', [Validators.min(5)]],
-        studyFirstDateTo: ['', [Validators.min(5)]],
-        universitySecond: ['', [Validators.min(10)]],
-        facultySecond: ['', [Validators.min(10)]],
-        courseSecond: ['', [Validators.min(10)]],
-        studySecondDateFrom: ['', [Validators.min(5)]],
-        studySecondDateTo: ['', [Validators.min(5)]],
-        universityThird: ['', [Validators.min(10)]],
-        facultyThird: ['', [Validators.min(10)]],
-        courseThird: ['', [Validators.min(10)]],
-        studyThirdDateFrom: ['', [Validators.min(5)]],
-        studyThirdDateTo: ['', [Validators.min(5)]],
+        birthDate: ["", [ Validators.min(1)]],
+        address: ["", [Validators.min(5)]],
+        school: ["", [Validators.min(10)]],
+        universityFirst: ["", [Validators.min(10)]],
+        facultyFirst: ["", [Validators.min(10)]],
+        courseFirst: ["", [Validators.min(10)]],
+        studyFirstDateFrom: ["", [Validators.min(5)]],
+        studyFirstDateTo: ["", [Validators.min(5)]],
+        universitySecond: ["", [Validators.min(10)]],
+        facultySecond: ["", [Validators.min(10)]],
+        courseSecond: ["", [Validators.min(10)]],
+        studySecondDateFrom: ["", [Validators.min(5)]],
+        studySecondDateTo: ["", [Validators.min(5)]],
+        universityThird: ["", [Validators.min(10)]],
+        facultyThird: ["", [Validators.min(10)]],
+        courseThird: ["", [Validators.min(10)]],
+        studyThirdDateFrom: ["", [Validators.min(5)]],
+        studyThirdDateTo: ["", [Validators.min(5)]],
       })
     }
   }
@@ -108,26 +117,20 @@ export class DialogBodyComponent implements OnInit{
     this.dialogRef.close(false);
   }
 
-  onSubmit( data1 : any,  data2 : any) {
+  onSubmit( data: any, f1: boolean, f2: boolean ) {
     this.submitted = true;
 
-    if (this.formUser.invalid && this.formEducation.invalid) {
-      return console.log("There is an error...");
+    if (this.formEducation.invalid && f2 || this.formUser.invalid && f1) {
+      return this.notificationService.showError("Some error", "Error??");
     }
 
-    this.loading = true;
+    this.ngxSpinnerService.show();
 
     if(!this.isAdd) {
-      if(data1 !== null) {
-        this.updateUser(data1);
-        console.log(data1);
-      } else if (data2 !== null) {
-        this.updateUser(data2);
-        console.log(data2);
-      }
+      this.updateUser(data);
+
     } else {
         this.createNew();
-        console.log();
     }
 
 
@@ -138,10 +141,15 @@ export class DialogBodyComponent implements OnInit{
       .pipe(first())
       .subscribe(
         data => {
-          console.log(`is ok ${data}`)
+          this.notificationService.showSuccess("User info update", "Update done")
         },
-        error => {this.loading = false}
+        error => {
+          this.ngxSpinnerService.hide();
+          this.notificationService.showError("Some error", "Error");
+          this.loading = false
+        }
       )
+    this.ngxSpinnerService.hide();
     this.dialogRef.close(true);
   }
 
@@ -149,9 +157,13 @@ export class DialogBodyComponent implements OnInit{
     this.dataService.register(this.formUser.value)
       .pipe(first())
       .subscribe(
-        data => { console.log(data) },
-        error => { console.log(error) }
+        data => { this.notificationService.showSuccess("New user create", "Create done") },
+        error => {
+          this.ngxSpinnerService.hide();
+          this.notificationService.showError("Some error", "Error");
+        }
       );
+    this.ngxSpinnerService.hide();
     this.dialogRef.close(true);
   }
 }
