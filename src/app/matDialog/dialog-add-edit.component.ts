@@ -7,18 +7,18 @@ import { TranslateService } from "@ngx-translate/core";
 import { DataService } from "../services/data.service";
 import { User } from "../models/user";
 import { NotificationService } from "../services/notification.service";
-import {NgxSpinnerService} from "ngx-spinner";
+import { NgxSpinnerService } from "ngx-spinner";
+import { DateValidator } from "../helpers/validators/dateValidator";
+import { AgeValidator } from "../helpers/validators/age";
 
 @Component({
   selector: "dialog-box",
-  templateUrl: "dialog-add-edit.component.ts.html"
+  templateUrl: "dialog-add-edit.component.html"
 })
 export class DialogAddEdit implements OnInit{
 
   formUser! : FormGroup;
-  f1!: boolean;
   formEducation!: FormGroup;
-  f2!: boolean;
   submitted!: boolean;
   loading!: boolean;
   user!: User;
@@ -35,7 +35,9 @@ export class DialogAddEdit implements OnInit{
     private ngxSpinnerService: NgxSpinnerService,
     private formBuilder: FormBuilder,
     private translate: TranslateService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private dateValidator: DateValidator,
+    private ageValidator: AgeValidator
   ) {
     translate.setDefaultLang('en');
     if (data) { this.userId = data.id; this.accessToken = data.accessToken; this.isAdd = data.isAdd}
@@ -78,35 +80,40 @@ export class DialogAddEdit implements OnInit{
 
   ngOnInit() {
     this.formUser = this.formBuilder.group({
-      username: ["", [Validators.required, Validators.min(3)]],
+      username: ["", [Validators.required, Validators.minLength(3)]],
       email: ["", [Validators.required]],
       role: ["", [Validators.required]],
-      password: ["", [Validators.required, Validators.min(5)]],
-      firstName: ["", [Validators.required, Validators.min(3)]],
-      lastName: ["", [Validators.required, Validators.min(3)]],
-      phoneNumber: ["", [Validators.required, Validators.min(10)]],
+      password: ["", [Validators.required, Validators.minLength(5)]],
+      firstName: ["", [Validators.required, Validators.minLength(3)]],
+      lastName: ["", [Validators.required, Validators.minLength(3)]],
+      phoneNumber: ["", [Validators.required, Validators.minLength(10)]],
     })
     if (!this.isAdd){
       this.formEducation = this.formBuilder.group({
-        birthDate: ["", [ Validators.min(1)]],
-        address: ["", [Validators.min(5)]],
-        school: ["", [Validators.min(10)]],
-        universityFirst: ["", [Validators.min(10)]],
-        facultyFirst: ["", [Validators.min(10)]],
-        courseFirst: ["", [Validators.min(10)]],
-        studyFirstDateFrom: ["", [Validators.min(5)]],
-        studyFirstDateTo: ["", [Validators.min(5)]],
-        universitySecond: ["", [Validators.min(10)]],
-        facultySecond: ["", [Validators.min(10)]],
-        courseSecond: ["", [Validators.min(10)]],
-        studySecondDateFrom: ["", [Validators.min(5)]],
-        studySecondDateTo: ["", [Validators.min(5)]],
-        universityThird: ["", [Validators.min(10)]],
-        facultyThird: ["", [Validators.min(10)]],
-        courseThird: ["", [Validators.min(10)]],
-        studyThirdDateFrom: ["", [Validators.min(5)]],
-        studyThirdDateTo: ["", [Validators.min(5)]],
-      })
+        birthDate: [""],
+        address: [""],
+        school: [""],
+        universityFirst: [""],
+        facultyFirst: [""],
+        courseFirst: [""],
+        studyFirstDateFrom: [""],
+        studyFirstDateTo: [""],
+        universitySecond: [""],
+        facultySecond: [""],
+        courseSecond: [""],
+        studySecondDateFrom: [""],
+        studySecondDateTo: [""],
+        universityThird: [""],
+        facultyThird: [""],
+        courseThird: [""],
+        studyThirdDateFrom: [""],
+        studyThirdDateTo: [""],
+      },
+        {
+          validators: [this.dateValidator.twoDatesFirst(), this.dateValidator.twoDatesSecond(), this.dateValidator.twoDatesThird(),
+          this.ageValidator.someAge()],
+          updateOn: 'blur',
+        })
     }
   }
 
@@ -117,11 +124,19 @@ export class DialogAddEdit implements OnInit{
     this.dialogRef.close(false);
   }
 
-  onSubmit( data: any, f1: boolean, f2: boolean ) {
+  onSubmit( data: any ) {
     this.submitted = true;
 
-    if (this.formEducation.invalid && f2 || this.formUser.invalid && f1) {
-      return this.notificationService.showError("Some error", "Error??");
+    if(!this.isAdd) {
+      if (this.formEducation.invalid || this.formUser.invalid ) {
+        return this.notificationService.showError("Some error", "Error??");
+      }
+    }
+
+    if(this.isAdd) {
+      if (this.formUser.invalid ) {
+        return this.notificationService.showError("Some error", "Error??");
+      }
     }
 
     this.ngxSpinnerService.show();
@@ -132,7 +147,6 @@ export class DialogAddEdit implements OnInit{
     } else {
         this.createNew();
     }
-
 
   }
 

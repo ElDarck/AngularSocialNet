@@ -1,15 +1,61 @@
+@mixin fiveHundred
+  @media screen and (max-width: 500px)
+    @content
+
 .container
-  .first
-    display: block
-    width: 100%
-    flex: 0 1 48%
-    button
-      width: 200px
-  .second
-    display: block
-    flex: 0 1 48%
-    width: 100%
-  .third
-    display: block
-    width: 100%
-    flex: 1 1 100%
+  .row
+    @include fiveHundred
+      flex-direction: column
+    .first
+      display: block
+      width: 100%
+      flex: 0 1 48%
+      .d-flex
+        align-items: center
+      button
+        width: 200px
+      .avatar-img
+        background-image: url('../../assets/images/unnamed.jpg')
+        background-repeat: no-repeat
+        max-width: 200px
+        max-height: 250px
+        background-size: contain
+      span
+        font-family: nanumgothicregular, sans-serif
+        font-size: 20px
+    .second
+      display: block
+      flex: 0 1 48%
+      width: 100%
+      margin-left: 0.5rem
+      @include fiveHundred
+        margin-left: 0
+        margin-top: 10px
+      h2
+        font-family: nanumgothicregular, sans-serif
+        font-size: 20px
+      span
+        font-family: nanumgothicregular, sans-serif
+        font-size: 18px
+    .third
+      display: block
+      width: 100%
+      flex: 1 1 100%
+      @include fiveHundred
+        display: none
+      h2
+        font-family: nanumgothicregular, sans-serif
+        font-size: 20px
+      table
+        font-family: nanumgothicregular, sans-serif
+        font-size: 16px
+    .fourth
+      display: none
+      @include fiveHundred
+        display: block
+      h2
+        font-family: nanumgothicregular, sans-serif
+        font-size: 20px
+      .font-st
+        font-family: nanumgothicregular, sans-serif
+        font-size: 16px

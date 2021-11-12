@@ -1,14 +1,13 @@
-import {Component, OnInit} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { first } from "rxjs/operators";
 import { TranslateService } from "@ngx-translate/core";
 
 import { User } from "../models/user";
 import { DataService } from "../services/data.service";
 import { DialogAddEdit } from "../matDialog/dialog-add-edit.component";
-import {NotificationService} from "../services/notification.service";
-import {NgxSpinnerService} from "ngx-spinner";
-
+import { NotificationService } from "../services/notification.service";
+import { NgxSpinnerService} from "ngx-spinner";
+import { PhotoBase64Component } from "../matDialog/image-upload.component";
 
 @Component({
   templateUrl: "user.component.html",
@@ -17,8 +16,10 @@ import {NgxSpinnerService} from "ngx-spinner";
 export class UserComponent implements OnInit{
 
   user!: User;
+  id!: string;
   accessToken: any;
   isAdd!: boolean;
+  image!: any;
 
   constructor(
     private ngxSpinnerService: NgxSpinnerService,
@@ -33,17 +34,19 @@ export class UserComponent implements OnInit{
 
   ngOnInit() {
     this.accessToken = this.user.accessToken;
-    this.user = this.user.user;
-    this.getById(this.user.id)
+    this.id = this.user.user.id;
+    this.getById(this.id)
+    this.image = this.user.img;
   }
 
   getById(id: string) {
     this.ngxSpinnerService.show();
 
     this.dataService.getById(id)
-      .pipe(first())
+      .pipe()
       .subscribe( res => {
         this.user = res;
+        this.image = this.user.img;
       },
         error => {
           this.ngxSpinnerService.hide();
@@ -64,6 +67,22 @@ export class UserComponent implements OnInit{
       .subscribe( (confirmed : boolean) => {
         if (confirmed) {
           this.dataService.user.subscribe(x => this.user = x);
+        }
+      })
+  }
+
+  photoLoad(id: any) {
+    const dialogRef = this.matDialog.open( PhotoBase64Component,
+      {
+        width: '550px',
+        data: { id: id, accessToken : this.accessToken, },
+        hasBackdrop: true,
+      })
+
+    dialogRef.afterClosed()
+      .subscribe( (confirmed : boolean) => {
+        if (confirmed) {
+          this.getById(this.user.id)
         }
       })
   }

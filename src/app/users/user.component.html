@@ -5,11 +5,17 @@
         <div class="d-flex flex-column mb-2">
           <span class="d-block m-2 text-left">{{ 'user.username' | translate }}{{user.username}}</span>
         </div>
-        <div class="d-block mb-3 clearfix" style="height: 200px; width: 200px">
-          <img class="img-thumbnail bordered float-left mx-auto d-block mb-1" src="/assets/images/unnamed.jpg" alt="Avatar">
+        <div class="d-block mb-3 clearfix avatar-img" style="max-height: 250px; max-width: 200px;">
+          <img [src]="image" style="max-height: 250px; max-width: 200px; object-fit: cover" alt="">
         </div>
-        <button class="btn btn-warning d-block mb-2" (click)="openDialog(this.user.id, this.isAdd =false)">
-          {{ 'user.edit' | translate }}</button>
+        <div class="d-block">
+          <button class="btn btn-success d-block mb-2" (click)="photoLoad(this.user.id)">Load Photo</button>
+
+          <button class="btn btn-warning d-block mb-2" (click)="openDialog(this.user.id, this.isAdd =false)">
+            {{ 'user.edit' | translate }}</button>
+
+        </div>
+
         <div class="d-flex flex-column mb-3">
           <div *ngIf="user.birthDate !== undefined"><span class="d-block m-2">
             {{ 'admin.birthday' | translate}} {{user.birthDate | date: "longDate"}}</span></div>
@@ -18,7 +24,7 @@
         </div>
       </div>
     </div>
-    <div class="right-col ml-2 d-block mw-50 pl-2 pr-3 border-right border-left border-dark rounded second">
+    <div class="right-col d-block mw-50 pl-2 pr-3 border-right border-left border-dark rounded second">
       <h2 class="mt-2 d-block text-uppercase text-center text-bold">{{'header.user' | translate}}</h2>
       <div class="d-block mb-2 text-left mt-3">
         <span class="d-inline-block ml-2" *ngIf="user.firstName !== undefined">
@@ -31,7 +37,7 @@
         <div *ngIf="user.school !== undefined"><span class="d-block m-2">{{ 'user.school' | translate}} {{user.school}}</span></div>
       </div>
     </div>
-    <div class="right-col mt-2 d-block pl-2 pr-3 border-top mw-100 border-bottom border-dark rounded third">
+    <div class="right-col mt-2 pl-2 pr-3 border-top mw-100 border-bottom border-dark rounded third">
       <h2 class="mt-2 d-block text-uppercase text-center text-bold">{{ 'user.study' | translate}}</h2>
       <div class="d-flex flex-collum ml-2">
         <table class="table table-striped"
@@ -65,6 +71,35 @@
           </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+    <div class="border-top border-white rounded mr-2 pt-2 fourth">
+      <h2 class="text-center">{{ 'user.study' | translate | uppercase }}</h2>
+      <div class="d-block study mt-2">
+        <div class="d-flex flex-column font-st"
+             *ngIf="user.universityFirst !== undefined || user.universitySecond !== undefined || user.universityThird !== undefined">
+          <div class="d-block mt-1 mb-1 pl-3 border-left border-right border-dark" *ngIf="user.universityFirst !== undefined">
+            <div class="d-block pt-1 pb-1">{{ 'user.place' | translate}}: {{user.universityFirst}}</div>
+            <div class="d-block pt-1 pb-1">{{ 'user.faculty' | translate}}: {{user.facultyFirst}}</div>
+            <div class="d-block pt-1 pb-1">{{ 'user.course' | translate}}: {{user.courseFirst}}</div>
+            <div class="d-block pt-1 pb-1">{{ 'user.ft' | translate}}:
+              {{user.studyFirstDateFrom | date: "longDate"}} - {{user.studyFirstDateTo | date: "longDate"}}</div>
+          </div>
+          <div class="d-block mt-1 mb-1 pl-3 border-left border-right border-dark" *ngIf="user.universitySecond !== undefined">
+            <div class="d-block pt-1 pb-1">{{ 'user.place' | translate}}: {{user.universitySecond}}</div>
+            <div class="d-block pt-1 pb-1">{{ 'user.faculty' | translate}}: {{user.facultySecond}}</div>
+            <div class="d-block pt-1 pb-1">{{ 'user.course' | translate}}: {{user.courseSecond}}</div>
+            <div class="d-block pt-1 pb-1">{{ 'user.ft' | translate}}:
+              {{user.studySecondDateFrom | date: "longDate"}} - {{user.studySecondDateTo | date: "longDate"}}</div>
+          </div>
+          <div class="d-block mt-1 mb-1 pl-3 border-left border-right border-dark" *ngIf="user.universityThird !== undefined">
+            <div class="d-block pt-1 pb-1">{{ 'user.place' | translate}}: {{user.universityThird}}</div>
+            <div class="d-block pt-1 pb-1">{{ 'user.faculty' | translate}}: {{user.facultyThird}}</div>
+            <div class="d-block pt-1 pb-1">{{ 'user.course' | translate}}: {{user.courseThird}}</div>
+            <div class="d-block pt-1 pb-1">{{ 'user.ft' | translate}}:
+              {{user.studyThirdDateFrom | date: "longDate"}} - {{user.studyThirdDateTo | date: "longDate"}}</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -28,4 +28,5 @@ export class User {
   studyThirdDateFrom!: string;
   studyThirdDateTo!: string;
   role!: Role;
+  img!: string;
 }

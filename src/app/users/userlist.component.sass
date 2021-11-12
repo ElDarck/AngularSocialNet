@@ -1,0 +1,23 @@
+@mixin fourHundred
+  @media screen and (max-width: 450px)
+    @content
+
+.search-users
+  font-family: nanumgothicbold, sans-serif
+  font-size: 20px
+
+.max-user
+  max-width: 500px
+  .buttons-bgg
+    display: flex
+    @include fourHundred
+      flex-direction: column
+      align-items: stretch
+      button
+        @include fourHundred
+        margin: 10px 0 0 0 !important
+  span
+    font-family: nanumgothicregular, sans-serif
+    font-size: 20px
+    @include fourHundred
+      font-size: 16px

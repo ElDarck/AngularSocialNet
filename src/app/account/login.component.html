@@ -7,7 +7,7 @@
           <input id="email" type="email" formControlName="email" class="form-control"
                [ngClass]="{'is-invalid': submitted && f.email.errors}" placeholder="{{ 'registration.email' | translate }}">
           <div class="invalid-feedback" *ngIf="submitted && f.email.errors">
-            <div *ngIf="f.email.errors.required">{{ 'registration.emailreq' | translate }}Email is required</div>
+            <div *ngIf="f.email.errors.required"></div>
           </div>
         </div>
         <div class="form-group">
@@ -16,6 +16,7 @@
             "{'is-invalid': submitted && f.password.errors}" placeholder="{{ 'registration.pass' | translate }}">
           <div class="invalid-feedback" *ngIf="submitted && f.password.errors">
             <div *ngIf="f.password.errors.required">{{ 'registration.passreq' | translate }}</div>
+            <div *ngIf="f.password.errors.minlength">{{ 'registration.passreqlong' | translate }}</div>
           </div>
         </div>
         <div class="form-group">

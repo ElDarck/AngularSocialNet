@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Upload Photo?</h2>
+
+<mat-dialog-content>
+
+  <div class="border border-info m-auto">
+    <label for="file">Select Image
+      <img style="min-width: 250px; min-height: 250px; max-width: 250px; max-height: 250px" [src]="imageUrl" alt="Image">
+    </label>
+  </div>
+
+  <div class="d-block">
+    <input type="file" id="file" accept="image/*" hidden  (change)="onChange( $event )" >
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button (click)="sendImg()">Update</button>
+  <button class="mat-raised-button ml-2" (click)="close()">{{ 'dialog.close' | translate }}</button>
+</mat-dialog-actions>

@@ -14,7 +14,8 @@ import { UserInfoComponent } from "../matDialog/user-info.component";
 import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
-  templateUrl: "userlist.component.html"
+  templateUrl: "userlist.component.html",
+  styleUrls: ["userlist.component.sass"]
 })
 export class UserlistComponent implements OnInit {
 
@@ -25,6 +26,8 @@ export class UserlistComponent implements OnInit {
   accessToken: any;
   searchText: any;
   isAdd!: boolean;
+  isOnline!:boolean;
+  user!: any;
 
   constructor(
     private ngxSpinnerService: NgxSpinnerService,
@@ -98,6 +101,7 @@ export class UserlistComponent implements OnInit {
       .pipe(first())
       .subscribe( data => {
         this.users = data;
+        console.log(this.users)
       },
         error => {
         this.ngxSpinnerService.hide();

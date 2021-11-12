@@ -8,10 +8,11 @@ import { User } from "../models/user";
 import { DataService } from "../services/data.service";
 import { DeleteUserComponent } from "../matDialog/delete-user.component";
 import { NotificationService } from "../services/notification.service";
-import {NgxSpinnerService} from "ngx-spinner";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
-  templateUrl: "admin.component.html"
+  templateUrl: "admin.component.html",
+  styleUrls: ["admin.component.sass"]
 })
 export class AdminComponent implements OnInit {
 

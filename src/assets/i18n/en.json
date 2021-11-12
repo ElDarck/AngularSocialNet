@@ -15,6 +15,7 @@
     "rights" : "All rights reserved"
   },
   "admin": {
+    "user-card": "User:",
     "title" : "Admin Panel",
     "card-body-p1": "This page can be access ONLY by Administrator",
     "card-body-p2" : "All users from secure (admin only) api end point:",
@@ -39,7 +40,8 @@
     "place": "Place of study",
     "faculty": "Faculty",
     "course": "Course",
-    "ft": "Start - End"
+    "ft": "Start - End",
+    "univ": "University"
   },
   "userlist": {
     "user-info": "User Info:",
@@ -57,7 +59,7 @@
     "emailreq" : "Email is required",
     "pass": "Password",
     "passreq" : "Password is required",
-    "passreqlong": "Password must be at least 6 characters",
+    "passreqlong": "Password must be at least 5 characters",
     "admin": "Admin:",
     "role": "Role:",
     "user": "User:",
@@ -69,6 +71,8 @@
     "login" : "Login"
   },
   "dialog": {
+    "req3": "Must be at least 3 characters",
+    "req10": "Must be at least 10 characters",
     "title": "Edit user data:",
     "title-content": "User general info",
     "id": "User ID: ",

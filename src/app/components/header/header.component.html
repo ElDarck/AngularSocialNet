@@ -1,13 +1,11 @@
 <div class="header">
   <div class="header-container row">
-    <div class="header-left col-xl-1">
-      <div>
-        <a href="#">
-          <div class="header-logo"><mat-icon class="icon-size">hive</mat-icon></div>
-        </a>
-      </div>
+    <div class="header-left">
+      <a href="#">
+        <div class="header-logo"><mat-icon class="icon-size">hive</mat-icon></div>
+      </a>
     </div>
-    <div class="d-inline-block col-xl-3">
+    <div class="user-block">
       <ul *ngIf="user !== null" class="d-inline-block">
         <li class="d-inline m-1"><a routerLink="/userlist">{{ 'header.allUsers' | translate: user}}</a></li>
         <li class="d-inline m-1"><a *ngIf="user.user.role == isAdmin" routerLink="/admin">
@@ -16,33 +14,29 @@
         <li class="d-inline m-1"><a (click)="logout()">{{ 'header.exit' | translate: user}}</a></li>
       </ul>
     </div>
-    <div class="header-right col-xl-1">
-      <div class="header-user">
-        <div class="header-avatar" *ngIf="user !== null" [hidden]="avatarMenu" (click)="hideAvatarMenu()">
-          <mat-icon class="icon-size">person</mat-icon>
-          <span>{{user.user.username}}</span>
-          <ul>
-            <li class="d-inline m-1"><a routerLink="/userlist">{{ 'header.allUsers' | translate: user}}</a></li>
-            <li class="d-inline m-1"><a *ngIf="user.user.role == isAdmin" routerLink="/admin">
-              {{ 'header.user' | translate: user}}</a></li>
-            <li class="d-inline m-1 header-options"><a routerLink="../user">{{ 'header.user' | translate: user}}</a></li>
-            <li class="d-inline m-1 header-exit"><a (click)="logout()">{{ 'header.exit' | translate: user}}</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="header-language" (click)="hideLangMenu()"><span>Lang</span>
+    <div class="header-right">
+      <div class="header-language-bg">
         <ul>
           <li class="header-eng">
-            <img src="src/assets/images/eng.png" class="btn btn-check" (click)="switchLanguage('en')" alt="ENG"></li>
+            <img src="assets/images/eng.png" class="btn btn-check" (click)="switchLanguage('en')" alt="ENG"></li>
           <li class="header-fr">
-            <img src="src/assets/images/fr.jpg" class="btn btn-check" (click)="switchLanguage('fr')" alt="FR"></li>
+            <img src="assets/images/fr.png" class="btn btn-check" (click)="switchLanguage('fr')" alt="FR"></li>
         </ul>
       </div>
-        <div class="header-language" (click)="hideLangMenu()"><span>Lang</span>
-        <ul [hidden]="langMenu">
-          <li class="header-eng"><button class="btn btn-check" (click)="switchLanguage('en')">ENG</button></li>
-          <li class="header-fr"><button class="btn btn-check" (click)="switchLanguage('fr')">FR</button></li>
-        </ul>
+      <div class="header-user" *ngIf="user !== null">
+        <div class="header-avatar">
+          <button mat-icon-button color="basic" [matMenuTriggerFor]="belowMenu" class="menu-button">
+            <mat-icon class="icon-size">menu</mat-icon></button>
+
+          <mat-menu #belowMenu="matMenu" yPosition="below">
+            <button mat-menu-item routerLink="/userlist">{{ 'header.allUsers' | translate: user}}</button>
+            <button mat-menu-item *ngIf="user.user.role == isAdmin" routerLink="/admin">
+              {{ 'header.admin' | translate: user}}</button>
+            <button mat-menu-item routerLink="../user">{{ 'header.user' | translate: user}}</button>
+            <button mat-menu-item (click)="logout()">{{ 'header.exit' | translate: user}}</button>
+          </mat-menu>
+
+        </div>
       </div>
     </div>
   </div>

@@ -9,13 +9,15 @@ import { MatButtonModule } from "@angular/material/button";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { FileUploadModule } from 'ng2-file-upload';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MainComponent } from "./layout/main/main.component";
 import { MainModule } from "./layout/main/main.module";
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { PipeModule } from "./helpers/pipes/pipe.module";
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     NgxSpinnerModule,
     MatDialogModule,
     MatButtonModule,
+    FileUploadModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -42,8 +45,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
       }
     }),
     ToastrModule.forRoot(),
+    PipeModule,
   ],
   providers: [],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

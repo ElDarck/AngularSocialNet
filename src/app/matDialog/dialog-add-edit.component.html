@@ -17,6 +17,7 @@
              placeholder="{{ 'dialog.username' | translate}}" [ngClass]="{'is-invalid': submitted && f.username.errors}">
       <div class="invalid-feedback" *ngIf="submitted && f.username.errors">
         <div *ngIf="f.username.errors.required">{{ 'dialog.usernamereq' | translate}}</div>
+        <div *ngIf="f.username.errors.minlength">{{ 'dialog.req3' | translate }}</div>
       </div>
     </div>
 
@@ -54,6 +55,7 @@
              placeholder="{{ 'dialog.pass' | translate }}" [ngClass]="{'is-invalid': submitted && f.password.errors}">
       <div class="invalid-feedback" *ngIf="submitted && f.password.errors">
         <div *ngIf="f.password.errors.required">{{ 'dialog.passreq' | translate }}</div>
+        <div *ngIf="f.password.errors.minlength">{{ 'registration.passreqlong' | translate }}</div>
       </div>
     </div>
 
@@ -64,6 +66,7 @@
              [ngClass]="{'is-invalid': submitted && f.firstName.errors}">
       <div class="invalid-feedback" *ngIf="submitted && f.firstName.errors">
         <div *ngIf="f.firstName.errors.required">{{ 'dialog.fnamereq' | translate }}</div>
+        <div *ngIf="f.firstName.errors.minlength">{{ 'dialog.req3' | translate }}</div>
       </div>
     </div>
 
@@ -73,6 +76,7 @@
              placeholder="{{ 'dialog.lname' | translate }}" [ngClass]="{'is-invalid': submitted && f.lastName.errors}">
       <div class="invalid-feedback" *ngIf="submitted && f.lastName.errors">
         <div *ngIf="f.lastName.errors.required">{{ 'dialog.lnamereq' | translate }}</div>
+        <div *ngIf="f.lastName.errors.minlength">{{ 'dialog.req3' | translate }}</div>
       </div>
     </div>
 
@@ -82,20 +86,9 @@
              class="form-control" [ngClass]="{'is-invalid': submitted && f.phoneNumber.errors}">
       <div class="invalid-feedback" *ngIf="submitted && f.phoneNumber.errors">
         <div *ngIf="f.phoneNumber.errors.required">{{ 'dialog.phonereq' | translate }}</div>
+        <div *ngIf="f.phoneNumber.errors.minlength">{{ 'dialog.req10' | translate }}</div>
       </div>
     </div>
-
-    <div class="form-group col">
-    </div>
-
-    <button *ngIf="!isAdd" class="btn btn-primary mr-2" type="submit"
-            (click)="onSubmit(formUser.value, this.f1 = true,  this.f2 = true)">
-      {{ 'dialog.save' | translate }}
-    </button>
-    <button *ngIf="isAdd" class="btn btn-primary mr-2" type="submit"
-            (click)="onSubmit(formUser.value, this.f1 = true, this.f2 = true)">
-      {{ 'dialog.add' | translate}}
-    </button>
 
   </form>
   <h3 *ngIf="isAdd === false" class="mt-2">{{ 'dialog.about' | translate }}</h3>
@@ -203,13 +196,18 @@
              [ngClass]="{'is-invalid': submitted && e.studyFirstDateTo.errors}">
       <div class="invalid-feedback" *ngIf="submitted && e.studyFirstDateTo.errors"></div>
     </div>
-    <button *ngIf="!isAdd" class="btn btn-primary mr-2" type="submit"
-            (click)="onSubmit(formEducation.value , this.f1=false, this.f2 = true)">
-      {{ 'dialog.save' | translate }}
-    </button>
   </form>
 </mat-dialog-content>
 
 <mat-dialog-actions>
+
+  <button *ngIf="isAdd" class="btn btn-primary mr-2" type="submit"
+          (click)="onSubmit(formUser.value)">
+    {{ 'dialog.add' | translate}}
+  </button>
+  <button *ngIf="!isAdd" class="btn btn-primary mr-2" type="submit"
+          (click)="onSubmit(formEducation.value)">
+    {{ 'dialog.save' | translate }}
+  </button>
   <button class="mat-raised-button ml-2" (click)="close()">{{ 'dialog.close' | translate }}</button>
 </mat-dialog-actions>

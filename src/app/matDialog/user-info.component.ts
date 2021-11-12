@@ -13,6 +13,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class UserInfoComponent implements  OnInit {
 
+  image!: any;
   user! : User;
   accessToken!: any;
 
@@ -30,7 +31,8 @@ export class UserInfoComponent implements  OnInit {
   }
 
   ngOnInit() {
-
+    this.image = this.user.img
+    console.log(this.image)
   }
 
   close() {

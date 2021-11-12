@@ -3,32 +3,42 @@
   <div class="card-body">
     <p>{{'admin.card-body-p1' | translate }}</p>
     <p class="mb-1">{{'admin.card-body-p2' | translate }}</p>
-    <button class="btn btn-info mt-2 mb-2" (click)="openDialog(id = null, isAdd = true)">
+    <button class="btn btn-info mt-3 mb-2" (click)="openDialog(id = null, isAdd = true)">
       {{'admin.button-add' | translate}}</button>
     <div *ngIf="loading" class="spinner-border-sm spinner-border"></div>
     <div class="container mb-3 pt-1 pb-1">
-        <div class="search-users">
-          <input type="text" class="form-control" name="search" [(ngModel)]="searchText" autocomplete="off"
-                 placeholder="&#61442;  {{'admin.search-user' | translate }}">
-        </div>
+      <div class="search-users">
+        <input type="text" class="form-control" name="search" [(ngModel)]="searchText" autocomplete="off"
+                 placeholder="{{'admin.search-user' | translate }}">
+      </div>
     </div>
-    <div *ngIf="users" class="container mb-3 text-dark bg-light">
+    <div *ngIf="users" class="container pb-2 mb-3 text-dark bg-light">
       <ul>
-        <li *ngFor="let user of users | filter: searchText" class="d-block border-success border-bottom mt-3 mb-2">
-          <div class="d-flex flex-row mb-2 mt-2">
-            <div class="d-inline-block mr-3">
+        <li *ngFor="let user of users | filter: searchText" class="d-block border-success border-bottom mt-3 mb-3">
+          <h4>{{'admin.user-card' | translate}}</h4>
+
+          <div class="mb-2 mt-2 first">
+
+            <div class="d-inline-block mr-2 p-2 clearfix avatar-img" style="max-height: 250px; max-width: 200px;">
+              <img src="{{user.img}}" style="max-height: 250px; max-width: 200px; object-fit: cover" alt="">
+            </div>
+            <div class="d-inline-block mr-3 p-2">
               <span class="d-block mb-1">{{ 'admin.user-role' | translate }} {{user.role}}</span>
-              <span class="d-block mb-1">{{ 'admin.user-name' | translate }} {{user.firstName}} {{user.lastName}}</span>
+              <span class="d-block mb-1">
+                {{ 'admin.user-name' | translate }} {{user.firstName}} {{user.lastName | shortname}}</span>
               <span class="d-block mb-1">{{ 'admin.email' | translate }} {{user.email}}</span>
             </div>
-            <div class="d-inline-block">
+            <div class="d-inline-block p-2"
+            *ngIf="user.phoneNumber !== undefined || user.birthDate !== undefined || user.address !== undefined">
               <span class="d-block mb-1">{{ 'admin.phone' | translate }} {{user.phoneNumber}}</span>
               <span class="d-block mb-1">{{ 'admin.birthday' | translate }} {{user.birthDate | date:"longDate"}}</span>
               <span class="d-block mb-1">{{ 'admin.address' | translate }} {{user.address}}</span>
             </div>
+
           </div>
 
-          <div class="d-block mb-2">
+          <div class="mb-2 third"
+               *ngIf="user.universityFirst !== undefined || user.universitySecond !== undefined || user.universityThird !== undefined">
             <h2 class="mt-2 d-block text-uppercase text-center text-bold">{{ 'user.study' | translate}}</h2>
             <div class="d-flex flex-collum ml-2">
               <table class="table table-striped"
@@ -62,6 +72,40 @@
                 </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+
+          <div class="border-top border-white rounded mb-2 pt-2 fourth"
+               *ngIf="user.universityFirst !== null || user.universitySecond !== null || user.universityThird !== null">
+            <h2 class="text-center">{{ 'user.study' | translate | uppercase }}</h2>
+            <div class="d-block study mt-2">
+              <div class="d-flex flex-column"
+                   *ngIf="user.universityFirst !== undefined || user.universitySecond !== undefined || user.universityThird !== undefined">
+                <div class="d-block mt-1 mb-1 pl-3 border-left border-right border-dark" *ngIf="user.universityFirst !== undefined">
+                  <h2>{{ 'user.univ' | translate | uppercase }} 1:</h2>
+                  <div class="d-block pt-1 pb-1">{{ 'user.place' | translate}}: {{user.universityFirst}}</div>
+                  <div class="d-block pt-1 pb-1">{{ 'user.faculty' | translate}}: {{user.facultyFirst}}</div>
+                  <div class="d-block pt-1 pb-1">{{ 'user.course' | translate}}: {{user.courseFirst}}</div>
+                  <div class="d-block pt-1 pb-1">{{ 'user.ft' | translate}}:
+                    {{user.studyFirstDateFrom | date: "longDate"}} - {{user.studyFirstDateTo | date: "longDate"}}</div>
+                </div>
+                <div class="d-block mt-1 mb-1 pl-3 border-left border-right border-dark" *ngIf="user.universitySecond !== undefined">
+                  <h2>{{ 'user.univ' | translate | uppercase }} 2:</h2>
+                  <div class="d-block pt-1 pb-1">{{ 'user.place' | translate}}: {{user.universitySecond}}</div>
+                  <div class="d-block pt-1 pb-1">{{ 'user.faculty' | translate}}: {{user.facultySecond}}</div>
+                  <div class="d-block pt-1 pb-1">{{ 'user.course' | translate}}: {{user.courseSecond}}</div>
+                  <div class="d-block pt-1 pb-1">{{ 'user.ft' | translate}}:
+                    {{user.studySecondDateFrom | date: "longDate"}} - {{user.studySecondDateTo | date: "longDate"}}</div>
+                </div>
+                <div class="d-block mt-1 mb-1 pl-3 border-left border-right border-dark" *ngIf="user.universityThird !== undefined">
+                  <h2>{{ 'user.univ' | translate | uppercase }} 3:</h2>
+                  <div class="d-block pt-1 pb-1">{{ 'user.place' | translate}}: {{user.universityThird}}</div>
+                  <div class="d-block pt-1 pb-1">{{ 'user.faculty' | translate}}: {{user.facultyThird}}</div>
+                  <div class="d-block pt-1 pb-1">{{ 'user.course' | translate}}: {{user.courseThird}}</div>
+                  <div class="d-block pt-1 pb-1">{{ 'user.ft' | translate}}:
+                    {{user.studyThirdDateFrom | date: "longDate"}} - {{user.studyThirdDateTo | date: "longDate"}}</div>
+                </div>
+              </div>
             </div>
           </div>
 

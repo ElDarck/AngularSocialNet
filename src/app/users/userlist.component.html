@@ -5,23 +5,26 @@
   </div>
 </div>
 
-<div class="container border border-success rounded-left bg-info mb-3" *ngFor="let user of users | filter: searchText">
+<div class="container border border-success rounded-left bg-info mb-3 max-user" *ngFor="let user of users | filter: searchText">
   <span class="d-block m-1 text-center text-uppercase font-weight-bold">{{ 'userlist.user-info' | translate }}</span>
   <div class="d-block text-white">
-    <div class="d-inline-block m-2" >
-      <span class="text-center mb-2">{{ 'userlist.name-info' | translate }}</span>
-      <ul class="mt-2">
+    <span class="text-center mb-2">{{ 'userlist.name-info' | translate }}</span>
+    <div class="d-flex flex-row mb-1 justify-content-between">
+      <ul class="mt-2 p-2">
         <li class="mb-1"><span *ngIf="user.firstName !== undefined || user.lastName !== undefined">
-        {{ 'userlist.name' | translate }}{{user.firstName}} {{user.lastName}}</span></li>
+        {{ 'userlist.name' | translate }}{{user.firstName}} {{user.lastName | shortname}}</span></li>
         <li class="mb-1"><span *ngIf="user.username !== undefined">
           {{ 'userlist.username' | translate }}{{user.username}}</span></li>
         <li><span>{{ 'userlist.user-role' | translate }}{{user.role}}</span></li>
       </ul>
+      <div class="d-block mr-2 p-2 clearfix avatar-img" style="max-height: 200px; max-width: 150px;">
+        <img src="{{user.img}}" *ngIf="user.img !==null" style="max-height: 200px; max-width: 150px; object-fit: cover" alt="">
+      </div>
     </div>
   </div>
-  <div class="d-block mb-2">
-    <button (click)="openInfo(this.user)" *ngIf="this.currentUser.user.role === isAdmin"
-            type="button" class="btn btn-light mr-2">{{ 'userlist.user-watch' | translate }}</button>
+  <div class="mb-2 buttons-bgg">
+    <button (click)="openInfo(this.user)" type="button" class="btn btn-light mr-2">
+      {{ 'userlist.user-watch' | translate }}</button>
     <button (click)="openDialog(user.id, isAdd = false)" type="button" class="btn btn-warning mr-1"
             *ngIf="this.currentUser.user.id === user.id || this.currentUser.user.role === isAdmin">
       {{ 'admin.edit' | translate }}</button>
