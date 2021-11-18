@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from "../helpers/auth.guard";
+import { AuthGuard } from "../../helpers/auth.guard";
 
-import { Role } from "../models/role";
+import { Role } from "../../models/role";
 import { LayoutComponent } from './layout.component';
 import { UserComponent } from './user.component';
 import { AdminComponent } from "./admin.component";

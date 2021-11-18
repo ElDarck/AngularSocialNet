@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { first } from "rxjs/operators";
 
-import { DataService } from "../services/data.service";
+import { DataService } from "../../services/data.service";
 import {TranslateService} from "@ngx-translate/core";
-import {NotificationService} from "../services/notification.service";
+import {NotificationService} from "../../services/notification.service";
 import {NgxSpinnerService} from "ngx-spinner";
 
 

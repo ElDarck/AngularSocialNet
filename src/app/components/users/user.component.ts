@@ -2,10 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { TranslateService } from "@ngx-translate/core";
 
-import { User } from "../models/user";
-import { DataService } from "../services/data.service";
+import { User } from "../../models/user";
+import { DataService } from "../../services/data.service";
 import { DialogAddEdit } from "../matDialog/dialog-add-edit.component";
-import { NotificationService } from "../services/notification.service";
+import { NotificationService } from "../../services/notification.service";
 import { NgxSpinnerService} from "ngx-spinner";
 import { PhotoBase64Component } from "../matDialog/image-upload.component";
 

@@ -4,12 +4,12 @@ import { MatDialog } from "@angular/material/dialog";
 import { TranslateService } from "@ngx-translate/core";
 
 import { DialogAddEdit } from "../matDialog/dialog-add-edit.component";
-import { User } from "../models/user";
-import { DataService } from "../services/data.service";
+import { User } from "../../models/user";
+import { DataService } from "../../services/data.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Role } from "../models/role";
+import { Role } from "../../models/role";
 import { DeleteUserComponent } from "../matDialog/delete-user.component";
-import { NotificationService } from "../services/notification.service";
+import { NotificationService } from "../../services/notification.service";
 import { UserInfoComponent } from "../matDialog/user-info.component";
 import {NgxSpinnerService} from "ngx-spinner";
 

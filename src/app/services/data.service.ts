@@ -72,12 +72,6 @@ export class DataService {
       }));
   }
 
-  // saveAvatar(image, name ): Observable<any> {
-  //   const formData = new FormData();
-  //   formData.append('avatar', image, name);
-  //   return this.http.post(url, formData);
-  // }
-  //
   delete( id: string, accessToken: any) {
     return this.http.delete(`${environment.apiUrl}/users/${id}`, { headers:
     { Authorization: "Bearer " + accessToken } });

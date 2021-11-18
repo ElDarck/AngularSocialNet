@@ -7,9 +7,9 @@ import { MatMenuModule } from "@angular/material/menu";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
 
-import { AccountRoutingModule } from "../../account/account-routing.module";
-import { UsersModule } from "../../users/users.module";
-import { AccountModule } from "../../account/account.module";
+import { AccountRoutingModule } from "../../components/account/account-routing.module";
+import { UsersModule } from "../../components/users/users.module";
+import { AccountModule } from "../../components/account/account.module";
 import { FooterComponent } from "../../components/footer/footer.component";
 import { ContentComponent } from "../../components/content/content.component";
 import { HeaderComponent } from "../../components/header/header.component";

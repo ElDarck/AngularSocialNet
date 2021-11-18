@@ -2,9 +2,9 @@ import { Component, OnInit, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { TranslateService } from "@ngx-translate/core";
 
-import { DataService } from "../services/data.service";
-import { User } from "../models/user";
-import { NotificationService } from "../services/notification.service";
+import { DataService } from "../../services/data.service";
+import { User } from "../../models/user";
+import { NotificationService } from "../../services/notification.service";
 import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
@@ -13,7 +13,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class UserInfoComponent implements  OnInit {
 
-  image!: any;
+  image?: any;
   user! : User;
   accessToken!: any;
 

@@ -4,8 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './helpers/auth.guard';
 import { MainComponent } from "./layout/main/main.component";
 
-const accountModule = () => import("./account/account.module").then(x => x.AccountModule);
-const usersModule = () => import("./users/users.module").then(x => x.UsersModule);
+const accountModule = () => import("./components/account/account.module").then(x => x.AccountModule);
+const usersModule = () => import("./components/users/users.module").then(x => x.UsersModule);
 
 const routes: Routes = [
   { path: 'main', component: MainComponent},

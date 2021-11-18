@@ -15,7 +15,7 @@ import { DialogAddEdit } from "../matDialog/dialog-add-edit.component";
 import { DeleteUserComponent } from "../matDialog/delete-user.component";
 import { TranslateModule } from "@ngx-translate/core";
 import { UserInfoComponent } from "../matDialog/user-info.component";
-import { PipeModule } from "../helpers/pipes/pipe.module";
+import { PipeModule } from "../../helpers/pipes/pipe.module";
 import {PhotoBase64Component} from "../matDialog/image-upload.component";
 
 @NgModule({

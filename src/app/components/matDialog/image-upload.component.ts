@@ -1,10 +1,10 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import { DomSanitizer } from "@angular/platform-browser";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {DataService} from "../services/data.service";
+import {DataService} from "../../services/data.service";
 import {NgxSpinnerService} from "ngx-spinner";
 import {TranslateService} from "@ngx-translate/core";
-import {NotificationService} from "../services/notification.service";
+import {NotificationService} from "../../services/notification.service";
 import {observable, Observable, Subscribable, Subscriber} from "rxjs";
 import { first } from 'rxjs/operators';
 import {R} from "@angular/cdk/keycodes";

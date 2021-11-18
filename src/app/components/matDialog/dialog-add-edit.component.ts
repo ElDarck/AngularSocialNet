@@ -4,12 +4,12 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { first } from "rxjs/operators";
 import { TranslateService } from "@ngx-translate/core";
 
-import { DataService } from "../services/data.service";
-import { User } from "../models/user";
-import { NotificationService } from "../services/notification.service";
+import { DataService } from "../../services/data.service";
+import { User } from "../../models/user";
+import { NotificationService } from "../../services/notification.service";
 import { NgxSpinnerService } from "ngx-spinner";
-import { DateValidator } from "../helpers/validators/dateValidator";
-import { AgeValidator } from "../helpers/validators/age";
+import { DateValidator } from "../../helpers/validators/dateValidator";
+import { AgeValidator } from "../../helpers/validators/age";
 
 @Component({
   selector: "dialog-box",
@@ -87,6 +87,7 @@ export class DialogAddEdit implements OnInit{
       firstName: ["", [Validators.required, Validators.minLength(3)]],
       lastName: ["", [Validators.required, Validators.minLength(3)]],
       phoneNumber: ["", [Validators.required, Validators.minLength(10)]],
+      img:[null]
     })
     if (!this.isAdd){
       this.formEducation = this.formBuilder.group({

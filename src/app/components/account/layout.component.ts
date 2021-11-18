@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { DataService } from "../services/data.service";
+import { DataService } from "../../services/data.service";
 
 @Component({templateUrl: "layout.component.html"})
 export class LayoutComponent {

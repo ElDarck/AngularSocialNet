@@ -3,8 +3,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { first } from "rxjs/operators";
 import { TranslateService } from "@ngx-translate/core";
 
-import { DataService } from "../services/data.service";
-import { NotificationService } from "../services/notification.service";
+import { DataService } from "../../services/data.service";
+import { NotificationService } from "../../services/notification.service";
 import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({

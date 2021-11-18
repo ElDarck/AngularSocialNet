@@ -8,10 +8,8 @@
           <div class="d-block mb-2">
             <span class="">{{ 'user.username' | translate }}{{user.username}}</span>
           </div>
-          <div class="d-block mb-3 clearfix avatar-img" style="max-height: 350px; max-width: 300px;">
-            <img [src]="image" *ngIf="image !== undefined" style="max-height: 350px; max-width: 300px; object-fit: cover" alt="">
-            <img src="assets/images/unnamed.jpg" *ngIf="image === null" style="max-height: 250px; max-width: 200px;
-            object-fit: cover" alt="">
+          <div class="d-block mb-3 clearfix avatar-img" style="max-height: 350px; max-width: 250px;">
+            <img [src]="image" *ngIf="image !== undefined" style="max-height: 350px; max-width: 250px; object-fit: cover" alt="">
           </div>
           <div class="d-block mt-1">
             <div *ngIf="user.birthDate !== undefined"><span class="d-block pt-2 pb-2">
